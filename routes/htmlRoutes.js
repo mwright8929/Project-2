@@ -7,9 +7,13 @@ module.exports = function(app) {
   });
 
   app.get("/games", function(req, res) {
-    res.render("games");
-    //db.findAll({where: {category: 'game'}}).then((data)=> var data = data)
-    // send data to games page
+    db.Reviews.findAll({
+      include: [db.Users],
+      where: { category: "game" }
+    }).then(data => {
+      res.render("games", { data: data });
+      console.log(data);
+    });
   });
 
   app.get("/movies", function(req, res) {

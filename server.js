@@ -1,9 +1,8 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-var seeds = require("./test/seeds");
 var db = require("./models");
-
+var seeds = require("./test/seeds");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
@@ -43,15 +42,8 @@ db.sequelize.sync(syncOptions).then(function() {
       PORT,
       PORT
     );
+    seeds();
   });
 });
 
-db["Review"].create({
-  headline: "It's mediocre.",
-  productName: "The Revenge of Bob",
-  category: "Movie",
-  score: 2
-});
-
-console.log(db.Review);
 module.exports = app;
