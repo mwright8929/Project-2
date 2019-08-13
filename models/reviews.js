@@ -25,5 +25,13 @@ module.exports = function(sequelize, DataTypes) {
       validate: { is: /\.(gif|jpg|jpeg|tiff|png)$/ }
     }
   });
+
+  //   Review.associate = function(models) {
+  //     Review.belongsTo(models.User, {
+  //       foreignKey: {
+  //         allowNull: false
+  //       }
+  //     });
+  //   };
   return Review;
 };
