@@ -1,12 +1,72 @@
 <div class="container-fluid">
     {{> header}}
     <div class="row">
-        <label>Category (dropdown)</label><input type="text" />
-        <label>Title</label><input type="text" />
-        <label>Score</label><input type="text" />
-        <label>Review Text</label><input type="text" />
-        <label>User</label><input type="text" />
+        <div class="ui compact menu">
+            <div class="ui simple dropdown item">
+                Catagories
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">Movie</div>
+                    <div class="item">Book</div>
+                    <div class="item">Game</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui form">
+            <div class="inline fields">
+                <label for="fruit">Rating:</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+                        <label>Worst</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <label></label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <label>Best</label>
+                    </div>
+                </div>
+            </div>
+            <div class="ui form">
+                <div class="fields">
+                    <div class="field">
+                        <label>Title</label>
+                        <input type="text" placeholder="Title of item to be reviewed">
+                    </div>
+                    <div class="field">
+                        <label>Name</label>
+                        <input type="text" placeholder="Name of Reviewer">
+                    </div>
+                    <div class="field">
+                        <label>Review</label>
+                        <textarea placeholder="Thank you for your review!"></textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="massive ui button">
+                Submit
+            </button>
+        </div>
     </div>
 </div>
-
 <script src="/js/form.js"></script>
