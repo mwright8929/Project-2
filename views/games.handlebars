@@ -1,7 +1,17 @@
 <div class="container-fluid">
     {{> header}}
-    <div class="row">
-        <div class="col-md-12" id="reviews">Latest reviews here</div>
+    <div class="ui link cards">
+        {{#each data}}
+        <div class="card">
+            <div class="image">
+                <img src="" alt="">
+            </div>
+            <div class="content">
+                <div class="header">{{headline}}</div>
+                <div class="description">{{score}}</div>
+            </div>
+        </div>
+        {{/each}}
     </div>
 </div>
 

@@ -5,6 +5,11 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: { len: [1, 70] }
     },
+    productName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: { len: [1, 70] }
+    },
     category: {
       type: DataTypes.STRING,
       allowNull: false,
