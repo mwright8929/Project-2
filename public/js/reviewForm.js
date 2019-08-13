@@ -1,5 +1,5 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
+/*var $exampleText = $("#example-text");
 var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
@@ -96,4 +96,67 @@ var handleDeleteBtnClick = function() {
 
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+$exampleList.on("click", ".delete", handleDeleteBtnClick);*/
+
+
+
+
+
+
+
+
+//get headers
+//get input from pulldown menu
+//get input from review buttons
+//get input from title , author and textarea.
+// on submit, submit data, retrieve json object.
+//post data
+//update (edit) data
+
+/*$(document).on("ready",function(){
+  get headers
+ post
+ $(document).on("submit","#submit",function(){
+  update
+  <delete>
+});
+});
+*/
+
+$(document).on("ready", function () {
+  console.log("I'm ready!");
+  $('.ui.compact.menu')
+    .dropdown();
+
+    $('.ui.radio.checkbox')
+  .checkbox()
+;
+
+  $("#submit").on("submit", function (event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+    console.log("hello");
+
+    var newReview = {
+      catagory: $("#catagory").val().trim(),
+      title: $("#title").val().trim(),
+      rating: $("[name = fruit]:checked")
+        .val()
+        .replace("", " ")
+        .trim(),
+      review: $("#review").val().trim(),
+      author: $("#name").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/reviews", {
+      type: "POST",
+      data: newReview
+    }).then(function () {
+      console.log("created new Review");
+      // Reload the page to get the updated list
+      location.reload();
+    });
+  });
+
+});

@@ -1,14 +1,15 @@
 <div class="container-fluid">
     {{> header}}
     <div class="row">
+
         <div class="ui compact menu">
             <div class="ui simple dropdown item">
                 Catagories
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <div class="item">Movie</div>
-                    <div class="item">Book</div>
-                    <div class="item">Game</div>
+                    <div class="item" data-value="movie">Movies</div>
+                    <div class="item" data-value="book">Books</div>
+                    <div class="item" data-value="game">Games</div>
                 </div>
             </div>
         </div>
@@ -18,46 +19,46 @@
                 <label for="fruit">Rating:</label>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="fruit" checked="" tabindex="0" class="hidden">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value=1>
                         <label>Worst</label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value=2>
                         <label></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value=3>
                         <label></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value=4>
                         <label></label>
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui radio checkbox">
-                        <input type="radio" name="fruit" tabindex="0" class="hidden">
+                        <input type="radio" name="fruit" tabindex="0" class="hidden" value=5>
                         <label>Best</label>
                     </div>
                 </div>
             </div>
             <div class="ui form">
                 <div class="fields">
-                    <div class="field">
+                    <div class="field" id="title">
                         <label>Title</label>
                         <input type="text" placeholder="Title of item to be reviewed">
                     </div>
-                    <div class="field">
+                    <div class="field" id="name">
                         <label>Name</label>
                         <input type="text" placeholder="Name of Reviewer">
                     </div>
-                    <div class="field">
+                    <div class="field" id="review">
                         <label>Review</label>
                         <textarea placeholder="Thank you for your review!"></textarea>
                     </div>
@@ -69,4 +70,3 @@
         </div>
     </div>
 </div>
-<script src="/js/form.js"></script>
