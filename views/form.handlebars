@@ -50,17 +50,17 @@
             </div>
             <div class="ui form">
                 <div class="fields">
-                    <div class="field" id="title">
+                    <div class="field">
                         <label>Title</label>
-                        <input type="text" placeholder="Title of item to be reviewed">
+                        <input type="text" id="title" placeholder="Title of item to be reviewed">
                     </div>
-                    <div class="field" id="name">
+                    <div class="field">
                         <label>Name</label>
-                        <input type="text" placeholder="Name of Reviewer">
+                        <input type="text" id="name" placeholder="Name of Reviewer">
                     </div>
-                    <div class="field" id="review">
+                    <div class="field">
                         <label>Review</label>
-                        <textarea placeholder="Thank you for your review!"></textarea>
+                        <textarea placeholder="Thank you for your review!" id="review"></textarea>
                     </div>
                 </div>
             </div>
@@ -83,6 +83,7 @@
         ;
     $(document).on("click", ".massive.ui.button", function () {
         console.log("click");
+        //console.log($("#review").val());
         // console.log($("#catagories").dropdown('get value'));
         //console.log($("[name = fruit]:checked").val());
         var newReview = {
