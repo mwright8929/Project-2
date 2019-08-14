@@ -3,7 +3,7 @@
     <div class="row">
 
         <div class="ui compact menu">
-            <div class="ui simple dropdown item">
+            <div class="ui simple dropdown item" id="catagories">
                 Catagories
                 <i class="dropdown icon"></i>
                 <div class="menu">
@@ -70,3 +70,42 @@
         </div>
     </div>
 </div>
+<script>
+    console.log("I'm ready!");
+    $('#catagories')
+        .dropdown({
+            action: 'activate'
+        });
+
+
+    $('.ui.radio.checkbox')
+        .checkbox()
+        ;
+    $(document).on("click", ".massive.ui.button", function () {
+        console.log("click");
+        // console.log($("#catagories").dropdown('get value'));
+        //console.log($("[name = fruit]:checked").val());
+        var newReview = {
+            catagory: $("#catagories").dropdown('get value'),
+            title: $("#title").val().trim(),
+            rating: $("[name = fruit]:checked")
+                .val()
+                .replace("", " ")
+                .trim(),
+            review: $("#review").val().trim(),
+            author: $("#name").val().trim()
+        };
+        console.log(newReview);
+        // Send the POST request.
+      /*  $.ajax("/api/reviews", {
+            type: "POST",
+            data: newReview
+        }).then(function () {
+            console.log("created new Review");
+            // Reload the page to get the updated list
+            location.reload();
+        });*/
+    });
+
+
+</script>

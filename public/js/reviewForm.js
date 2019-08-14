@@ -138,7 +138,7 @@ $(document).on("ready", function () {
     console.log("hello");
 
     var newReview = {
-      catagory: $("#catagory").val().trim(),
+      catagory: $(".ui.compact.menu").val().trim(),
       title: $("#title").val().trim(),
       rating: $("[name = fruit]:checked")
         .val()
