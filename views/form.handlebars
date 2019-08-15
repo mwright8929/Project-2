@@ -86,11 +86,13 @@
 <script>
     console.log("I'm ready!");
     $(document).ready(function () {
-        $('select').formSelect();
+     $('select').formSelect();
     });
+
 
     $(document).on("click", "#submit", function () {
         console.log("click");
+        console.log($("#select").val())
         console.log($("#title").val());
         console.log($("#user").val());
         console.log($("#review").val());
