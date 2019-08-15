@@ -126,26 +126,26 @@
         // console.log($("#catagories").dropdown('get value'));
         //console.log($("[name = fruit]:checked").val());
         var newReview = {
-            catagory: $("#catagories").dropdown('get value'),
+            category: $("#catagories").dropdown('get value'),
             productName: $("#title").val().trim(),
-            rating: $("[name = fruit]:checked")
+            score: $("[name = fruit]:checked")
                 .val()
                 .replace("", " ")
                 .trim(),
             headline: $("#headline").val().trim(),
             review: $("#review").val().trim(),
-            user: $("#name").val().trim()
+            UserId: $("#name").val().trim()
         };
         console.log(newReview);
         // Send the POST request.
-        /*  $.ajax("/api/reviews", {
-              type: "POST",
-              data: newReview
-          }).then(function () {
-              console.log("created new Review");
-              // Reload the page to get the updated list
-              location.reload();
-          });*/
+        $.ajax("/api/reviews", {
+            type: "POST",
+            data: newReview
+        }).then(function () {
+            console.log("created new Review");
+            // Reload the page to get the updated list
+            location.reload();
+        });
     });
 
 
