@@ -36,4 +36,12 @@ module.exports = function(app) {
       failureRedirect: "/signup"
     })
   );
+
+  app.post(
+    "/signin",
+    passport.authenticate("local-signin", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/signin"
+    })
+  );
 };
