@@ -1,7 +1,22 @@
 <div class="container-fluid">
     {{> header}}
-    <div class="row">
-        <div class="col-md-12" id="reviews">Latest reviews here</div>
+    <div class="ui link cards">
+        {{#each data}}
+        <div class="card">
+            <div class="image">
+                <img src={{img}} alt="poster or cover">
+            </div>
+            <div class="content">
+                <div class="header">{{headline}}</div>
+                <div class="meta">Review of {{productName}} by {{User.name}}</div>
+                <div class="description">{{score}}</div>
+            </div>
+            <div class="extra-content">
+                <span class="right-floated">Created on {{createdAt}}</span>
+            </div>
+            <p hidden>{{review}}</p>
+        </div>
+        {{/each}}
     </div>
 </div>
 
