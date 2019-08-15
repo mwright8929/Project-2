@@ -1,4 +1,5 @@
 var db = require("../models");
+var passport = require("passport");
 
 module.exports = function(app) {
   // Get all examples
@@ -15,8 +16,8 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/reviews/:id", function(req,res){
-    db.Reviews.update({ where: { id: req.params }}).then(function(dbReviews){
+  app.put("/api/reviews/:id", function(req, res) {
+    db.Reviews.update({ where: { id: req.params } }).then(function(dbReviews) {
       res.json(dbReviews);
     });
   });
@@ -27,4 +28,12 @@ module.exports = function(app) {
       res.json(dbReviews);
     });
   });
+
+  app.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/dashboard",
+      failureRedirect: "/signup"
+    })
+  );
 };
