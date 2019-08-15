@@ -1,12 +1,152 @@
+{{> header}}
 <div class="container-fluid">
-    {{> header}}
-    <div class="row">
-        <label>Category (dropdown)</label><input type="text" />
-        <label>Title</label><input type="text" />
-        <label>Score</label><input type="text" />
-        <label>Review Text</label><input type="text" />
-        <label>User</label><input type="text" />
+    <div class="ui two column centered grid">
+        <div class="column">
+            <div class="ui segment">
+                <div class="ui selection dropdown" id="catagories">
+                    <input type="hidden" name="catagories" id="catagories">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Catagories</div>
+                    <div class="menu">
+                        <div class="item" data-value="movie" data-text="Movies">
+                            Movies
+                        </div>
+                        <div class="item" data-value="book" data-text="Books">
+                            Books
+                        </div>
+                        <div class="item" data-value="game" data-text="Games">
+                            Games
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<script src="/js/form.js"></script>
+<div class="container-fluid">
+    <div class="ui segment">
+        <div class="ui two column centered grid">
+            <div class="eight wide column">
+                <div class="ui form">
+                    <div class="fields">
+                        <div class="field">
+                            <label>Title</label>
+                            <input type="text" id="title" placeholder="Title of item to be reviewed">
+                        </div>
+                        <div class="eight wide column">
+                            <div class="field">
+                                <label>Name</label>
+                                <input type="text" id="name" placeholder="Name of Reviewer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="ui form">
+        <div class="field">
+            <label>Headline</label>
+            <input type="text" id="headline" placeholder="Please add a title for your review">
+        </div>
+    </div>
+    <div class="ui form">
+        <div class="field">
+            <label>Review</label>
+            <textarea placeholder="Thank you for your review!" id="review"></textarea>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="ui two column centered grid">
+        <div class="column">
+            <div class="ui form">
+                <div class="inline fields">
+                    <label for="fruit">Rating:</label>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="fruit" tabindex="0" class="hidden" value=1>
+                            <label>Worst</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="fruit" tabindex="0" class="hidden" value=2>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="fruit" tabindex="0" class="hidden" value=3>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="fruit" tabindex="0" class="hidden" value=4>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <input type="radio" name="fruit" tabindex="0" class="hidden" value=5>
+                            <label>Best</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="ui segment">
+        <button class="massive ui button">
+            Submit
+        </button>
+    </div>
+</div>
+<script>
+    console.log("I'm ready!");
+    $('#catagories')
+        .dropdown({
+            action: 'activate'
+        });
+
+
+    $('.ui.radio.checkbox')
+        .checkbox()
+        ;
+    $(document).on("click", ".massive.ui.button", function () {
+        console.log("click");
+        //console.log($("#review").val());
+        // console.log($("#catagories").dropdown('get value'));
+        //console.log($("[name = fruit]:checked").val());
+        var newReview = {
+            category: $("#catagories").dropdown('get value'),
+            productName: $("#title").val().trim(),
+            score: $("[name = fruit]:checked")
+                .val()
+                .replace("", " ")
+                .trim(),
+            headline: $("#headline").val().trim(),
+            review: $("#review").val().trim(),
+            UserId: $("#name").val().trim()
+        };
+        console.log(newReview);
+        // Send the POST request.
+        $.ajax("/api/reviews", {
+            type: "POST",
+            data: newReview
+        }).then(function () {
+            console.log("created new Review");
+            // Reload the page to get the updated list
+            location.reload();
+        });
+    });
+
+
+</script>

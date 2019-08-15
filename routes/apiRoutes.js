@@ -2,23 +2,29 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/api/reviews", function(req, res) {
+    db.Reviews.findAll({}).then(function(dbReviews) {
+      res.json(dbReviews);
     });
   });
 
   // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  app.post("/api/reviews", function(req, res) {
+    db.Reviews.create(req.body).then(function(dbReviews) {
+      res.json(dbReviews);
+    });
+  });
+
+  app.put("/api/reviews/:id", function(req,res){
+    db.Reviews.update({ where: { id: req.params }}).then(function(dbReviews){
+      res.json(dbReviews);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  app.delete("/api/reviews/:id", function(req, res) {
+    db.Reviews.destroy({ where: { id: req.params } }).then(function(dbReviews) {
+      res.json(dbReviews);
     });
   });
 };
