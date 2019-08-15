@@ -30,9 +30,9 @@
     <form class="col s12">
         <div class="row">
             <div class="input-field col s12">
-          <input  id="headliner" type="text" class="validate">
-          <label for="headliner">Please Make a Title for Your Review</label>
-        </div>
+                <input id="headliner" type="text" class="validate">
+                <label for="headliner">Please Make a Title for Your Review</label>
+            </div>
         </div>
     </form>
 </div>
@@ -97,8 +97,9 @@
         console.log($("#user").val());
         console.log($("#review").val());
         console.log($("#headliner").val());
+        console.log($("select").val()); // Getting the select value here
         // console.log($("#catagories").dropdown('get value'));
-        console.log($("[name = group1]:checked").val());
+        console.log($("[name = group1]:checked").attr("data-value")); // Getting the radio button value here
 
         /*
         var newReview = {
