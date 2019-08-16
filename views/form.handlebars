@@ -87,7 +87,7 @@
     console.log("I'm ready!");
 
     $(document).ready(function () {
-     $('select').formSelect();
+        $('select').formSelect();
     });
 
     $(document).on("click", "#submit", function () {
@@ -99,27 +99,94 @@
         console.log($("select").val()); // Getting the select value here
         console.log($("[name = group1]:checked").attr("data-value")); // Getting the radio button value here*/
 
-        var newReview = {
-            category: $("select").val().trim(),
-            productName: $("#title").val().trim(),
-            score: $("[name = group1]:checked").attr("data-value"),
-            headline: $("#headliner").val().trim(),
-            review: $("#review").val().trim(),
-            UserId: 1                 //$("#user").val().trim()
-        };
-        console.log(newReview);
+        /* var newReview = {
+             category: $("select").val().trim(),
+             productName: $("#title").val().trim(),
+             score: $("[name = group1]:checked").attr("data-value"),
+             headline: $("#headliner").val().trim(),
+             review: $("#review").val().trim(),
+             UserId: 1                 //$("#user").val().trim()
+         };
+         console.log(newReview);*/
 
-        
+
         // Send the POST request.
-        $.ajax("/api/reviews", {
-            type: "POST",
-            data: newReview
-        }).then(function () {
-            console.log("created new Review");
-            // Reload the page to get the updated list
-            location.reload();
-        });
-    });
+        /*   $.ajax("/api/reviews", {
+               type: "POST",
+               data: newReview
+           }).then(function () {
+               console.log("created new Review");
+               // Reload the page to get the updated list
+               location.reload();
+           });*/
+        var title = $("#title").val().trim();
+        (console.log("title= " + title));
+        var category = $("select").val();
+        (console.log("category= " + category));
 
+
+        switch (category) {
+            case "movie":
+                movieThis(title);
+                break;
+
+            //  case "book":
+            //      bookThis(title);
+            //      break;
+
+            //  case "play":
+            //      playThisGame(title);
+            //      break;
+
+
+            default:
+                break;
+        }
+        function movieThis(title) {
+            console.log(title);
+            if (title == "") {
+                title = "Mr. Nobody"
+            }
+
+            var queryURL = "http://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+
+            console.log(queryURL);
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                // After the data comes back from the API
+                .then(function (response) {
+
+                    // Storing an array of results in the results variable
+                    console.log(response);
+                    var image = response.Poster;
+                    console.log(image);
+
+                    var newReview = {
+                        category: $("select").val().trim(),
+                        productName: $("#title").val().trim(),
+                        score: $("[name = group1]:checked").attr("data-value"),
+                        headline: $("#headliner").val().trim(),
+                        review: $("#review").val().trim(),
+                        img: image,
+                        UserId: 1                 //$("#user").val().trim()
+                    }
+                    console.log(newReview);
+
+                    $.ajax("/api/reviews", {
+                        type: "POST",
+                        data: newReview
+                    }).then(function () {
+                        console.log("created new Review");
+                        // Reload the page to get the updated list
+                        location.reload();
+                    });
+                });
+        };
+
+
+    });
 
 </script>
