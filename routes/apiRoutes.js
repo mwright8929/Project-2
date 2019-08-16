@@ -23,8 +23,10 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
-  app.delete("/api/reviews/:id", function(req, res) {
-    db.Reviews.destroy({ where: { id: req.params } }).then(function(dbReviews) {
+  app.delete("/api/reviews/", function(req, res) {
+    db.Reviews.destroy({ where: { id: req.body.id } }).then(function(
+      dbReviews
+    ) {
       res.json(dbReviews);
     });
   });

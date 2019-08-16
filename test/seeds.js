@@ -1,17 +1,23 @@
 var db = require("../models");
+var bCrypt = require("bcrypt-nodejs");
+var generateHash = function(password) {
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+};
+var fakepassword = generateHash("12345");
 
+var bob = fakepassword;
 var users = [
   {
     id: 1,
     name: "Leeroy Jenkins",
     username: "TheLeeroy",
-    password: "Guy"
+    password: bob
   },
   {
     id: 2,
     name: "Buddy Guy",
     username: "BG",
-    password: "12345"
+    password: bob
   }
 ];
 

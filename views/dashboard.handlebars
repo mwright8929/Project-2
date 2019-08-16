@@ -1,3 +1,51 @@
-<h2>Dashboard</h2>
+<div class="container">
+    <div class="row">
+        <h1 class="col s12 center-align">Dashboard</h1>
+    </div>
+    <div class="row">
+        <h3 class="col s12 center-align">What would you like to do, {{user.name}}?</h3>
+    </div>
+    <div class="row">
+        <a href="/form" class="waves-effect waves-light btn col s12">Add a Review</a>
+    </div>
+    <div class="row">
+        <a href="/logout" class="waves-effect waves-light btn col s12" style="background:darkred">Logout</a>
+    </div>
 
-<h5>Hurray, you are logged in!</h5>
+    {{!-- populate a table with options to edit and delete reviews --}}
+    <table class="highlight z-depth-2">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Headline</th>
+                <th>Review</th>
+                <th>Score</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each reviews}}
+            <tr>
+                <td>{{productName}}</td>
+                <td>{{category}}</td>
+                <td>{{headline}}</td>
+                <td>{{review}}</td>
+                <td>{{score}}</td>
+                <td><a class="waves-effect waves-light btn edit" style="background:green" value={{id}}>Edit</a>
+                </td>
+                <td><a class="waves-effect waves-light btn delo" style="background:darkred" value={{id}}>Delete</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $("body").on("click", ".delo", function () {
+        console.log($(this).val());
+        $.ajax({ url: "/api/reviews" type: "DELETE" data: { id: $(this).val() } }).success(console.log("Deleted?"));
+    })
+</script>

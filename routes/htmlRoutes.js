@@ -25,7 +25,8 @@ module.exports = function(app) {
   });
 
   app.get("/form", isLoggedIn, function(req, res) {
-    res.render("form");
+    res.render("form", { user: req.user });
+    console.log(req.user); // this sends information from the user table to the page, capture the ID for the form?
   });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -54,7 +55,12 @@ module.exports = function(app) {
   });
 
   app.get("/dashboard", isLoggedIn, (req, res) => {
-    res.render("dashboard");
+    db.Reviews.findAll({
+      include: [db.Users],
+      where: { UserId: req.user.id }
+    }).then(function(userdata) {
+      res.render("dashboard", { reviews: userdata, user: req.user });
+    });
   });
 
   function isLoggedIn(req, res, next) {
