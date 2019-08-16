@@ -85,35 +85,31 @@
 
 <script>
     console.log("I'm ready!");
+
     $(document).ready(function () {
      $('select').formSelect();
     });
 
-
     $(document).on("click", "#submit", function () {
         console.log("click");
-        console.log($("#select").val())
-        console.log($("#title").val());
+        /*console.log($("#title").val());
         console.log($("#user").val());
         console.log($("#review").val());
         console.log($("#headliner").val());
         console.log($("select").val()); // Getting the select value here
-        // console.log($("#catagories").dropdown('get value'));
-        console.log($("[name = group1]:checked").attr("data-value")); // Getting the radio button value here
+        console.log($("[name = group1]:checked").attr("data-value")); // Getting the radio button value here*/
 
-        /*
         var newReview = {
-            category: $("#catagories").dropdown('get value'),
+            category: $("select").val().trim(),
             productName: $("#title").val().trim(),
-            score: $("[name = fruit]:checked")
-                .val()
-                .replace("", " ")
-                .trim(),
-            headline: $("#headline").val().trim(),
+            score: $("[name = group1]:checked").attr("data-value"),
+            headline: $("#headliner").val().trim(),
             review: $("#review").val().trim(),
-            UserId: $("#name").val().trim()
+            UserId: 1                 //$("#user").val().trim()
         };
         console.log(newReview);
+
+        
         // Send the POST request.
         $.ajax("/api/reviews", {
             type: "POST",
@@ -122,7 +118,7 @@
             console.log("created new Review");
             // Reload the page to get the updated list
             location.reload();
-        });*/
+        });
     });
 
 
