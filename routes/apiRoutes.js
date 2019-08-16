@@ -23,7 +23,7 @@ module.exports = function(app) {
   });
 
   // Delete an example by id
-  app.delete("/api/reviews/", function(req, res) {
+  app.delete("/api/reviews", function(req, res) {
     db.Reviews.destroy({ where: { id: req.body.id } }).then(function(
       dbReviews
     ) {

@@ -23,6 +23,7 @@ var users = [
 
 var reviews = [
   {
+    id: 1,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "movie",
@@ -33,6 +34,7 @@ var reviews = [
     UserId: 1
   },
   {
+    id: 2,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "game",
@@ -43,6 +45,7 @@ var reviews = [
     UserId: 1
   },
   {
+    id: 3,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "book",
@@ -53,6 +56,7 @@ var reviews = [
     UserId: 2
   },
   {
+    id: 4,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "game",

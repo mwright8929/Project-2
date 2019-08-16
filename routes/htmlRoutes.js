@@ -56,7 +56,6 @@ module.exports = function(app) {
 
   app.get("/dashboard", isLoggedIn, (req, res) => {
     db.Reviews.findAll({
-      include: [db.Users],
       where: { UserId: req.user.id }
     }).then(function(userdata) {
       res.render("dashboard", { reviews: userdata, user: req.user });

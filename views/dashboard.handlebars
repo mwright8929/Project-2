@@ -44,8 +44,13 @@
 </div>
 
 <script>
-    $("body").on("click", ".delo", function () {
-        console.log($(this).val());
-        $.ajax({ url: "/api/reviews" type: "DELETE" data: { id: $(this).val() } }).success(console.log("Deleted?"));
+    $(document).on("click", ".delo", function () {
+        $.ajax("/api/reviews", {
+            type: "DELETE",
+            data: { id: $(this).attr("value") }
+        }).done(function () {
+            location.reload();
+        }
+        )
     })
 </script>
