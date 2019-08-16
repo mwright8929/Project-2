@@ -1,8 +1,9 @@
 {{> header}}
+
 <div class="row">
     <div class="input-field col s12">
         <select>
-            <option value="" disabled selected>Categories</option>
+            <option value="" disable selected>Categories</option>
             <option value="movie">Movies</option>
             <option value="book">Books</option>
             <option value="game">Games</option>
@@ -130,11 +131,11 @@
                 movieThis(title);
                 break;
 
-            //  case "book":
-            //      bookThis(title);
-            //      break;
+            case "book":
+                bookThis(title);
+                break;
 
-            //  case "play":
+            //  case "game":
             //      playThisGame(title);
             //      break;
 
@@ -186,6 +187,49 @@
                 });
         };
 
+        function bookThis(title) {
+            console.log(title);
+            if (title == "") {
+                title = "Nan and her Red Hen"
+            }
+            var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + title;
+
+            console.log(queryURL);
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                // After the data comes back from the API
+                .then(function (response) {
+
+                    // Storing an array of results in the results variable
+                    // console.log(response);
+                    var image = response.items[0].volumeInfo.imageLinks.thumbnail;
+                    console.log(image)
+
+                    var newReview = {
+                        category: $("select").val().trim(),
+                        productName: $("#title").val().trim(),
+                        score: $("[name = group1]:checked").attr("data-value"),
+                        headline: $("#headliner").val().trim(),
+                        review: $("#review").val().trim(),
+                        img: image,
+                        UserId: 1                 //$("#user").val().trim()
+                    }
+                    console.log(newReview);
+
+                    $.ajax("/api/reviews", {
+                        type: "POST",
+                        data: newReview
+                    }).then(function () {
+                        console.log("created new Review");
+                        // Reload the page to get the updated list
+                        location.reload();
+                    });
+                });
+
+        };
 
     });
 
