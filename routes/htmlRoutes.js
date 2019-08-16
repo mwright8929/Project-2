@@ -17,11 +17,23 @@ module.exports = function(app) {
   });
 
   app.get("/movies", function(req, res) {
-    res.render("movies");
+    db.Reviews.findAll({
+      include: [db.Users],
+      where: { category: "movie" }
+    }).then(data => {
+      res.render("movies", { data: data });
+      console.log(data);
+    });
   });
 
   app.get("/books", function(req, res) {
-    res.render("books");
+    db.Reviews.findAll({
+      include: [db.Users],
+      where: { category: "book" }
+    }).then(data => {
+      res.render("books", { data: data });
+      console.log(data);
+    });
   });
 
   app.get("/form", function(req, res) {
