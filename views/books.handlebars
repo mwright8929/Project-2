@@ -1,10 +1,11 @@
 <div class="container">
     {{> header}}
-    <h2>Cards</h2>
+    <h2>Books</h2>
     <div class="row">
-        <div class="col s12 16">
+
+        {{#each data}}
+        <div class="col s4">
             <div class="card">
-                {{#each data}}
                 <div class="card-image">
                     <img src={{img}} alt="poster or cover">
                 </div>
