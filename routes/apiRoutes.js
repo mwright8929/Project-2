@@ -11,7 +11,15 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/reviews", function(req, res) {
-    db.Reviews.create(req.body).then(function(dbReviews) {
+    db.Reviews.create({
+      category: req.body.category,
+      productName: req.body.productName,
+      score: req.body.score,
+      headline: req.body.headline,
+      review: req.body.review,
+      img: req.body.image,
+      UserId: req.user.id
+    }).then(function(dbReviews) {
       res.json(dbReviews);
     });
   });
