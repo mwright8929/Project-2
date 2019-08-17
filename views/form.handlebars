@@ -1,5 +1,15 @@
 {{> header}}
 
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h3>Review</h3>
+        <div id="modalContent"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Post</a>
+    </div>
+</div>
+
 <div class="row">
     <div class="input-field col s12">
         <select>
@@ -78,9 +88,11 @@
     </div>
 </div>
 
-<button class="btn waves-effect waves-light" type="submit" name="action" id="submit">
+<button class="btn waves-effect waves-light" type="submit" name="action" id="submit" href="#modal1">
     <i class="material-icons right">Submit</i>
 </button>
+
+<div id="modalDiv"></div>
 
 
 
@@ -89,7 +101,9 @@
 
     $(document).ready(function () {
         $('select').formSelect();
+        // $('.modal').modal();
     });
+
 
     $(document).on("click", "#submit", function () {
         console.log("click");
@@ -174,16 +188,41 @@
                         img: image,
                         UserId: 1                 //$("#user").val().trim()
                     }
+
                     console.log(newReview);
 
-                    $.ajax("/api/reviews", {
-                        type: "POST",
-                        data: newReview
-                    }).then(function () {
-                        console.log("created new Review");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    });
+                    var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+
+                    $("#modalContent").append(modalContainer);
+
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
+
+
+                    /*   $.ajax("/api/reviews", {
+                           type: "POST",
+                           data: newReview
+                       }).then(function () {
+                           console.log("created new Review");
+                           // Reload the page to get the updated list
+                           location.reload();
+                       }); */
                 });
         };
 
@@ -215,18 +254,40 @@
                         headline: $("#headliner").val().trim(),
                         review: $("#review").val().trim(),
                         img: image,
-                        UserId: 1                 //$("#user").val().trim()
+                        UserId: 1                //$("#user").val().trim()
                     }
                     console.log(newReview);
 
-                    $.ajax("/api/reviews", {
+                     var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+
+                    $("#modalContent").append(modalContainer);
+
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
+                  /*  $.ajax("/api/reviews", {
                         type: "POST",
                         data: newReview
                     }).then(function () {
                         console.log("created new Review");
                         // Reload the page to get the updated list
                         location.reload();
-                    });
+                    });*/
                 });
 
         };
@@ -249,32 +310,56 @@
             }
 
             $.ajax(settings).done(function (response) {
-               // console.log(response);
+                // console.log(response);
 
                 var image = response.result.image;
                 console.log(image);
 
-                 var newReview = {
-                        category: $("select").val().trim(),
-                        productName: $("#title").val().trim(),
-                        score: $("[name = group1]:checked").attr("data-value"),
-                        headline: $("#headliner").val().trim(),
-                        review: $("#review").val().trim(),
-                        img: image,
-                        UserId: 1                 //$("#user").val().trim()
-                    }
-                    console.log(newReview);
+                var newReview = {
+                    category: $("select").val().trim(),
+                    productName: $("#title").val().trim(),
+                    score: $("[name = group1]:checked").attr("data-value"),
+                    headline: $("#headliner").val().trim(),
+                    review: $("#review").val().trim(),
+                    img: image,
+                    UserId: 1                 //$("#user").val().trim()
+                }
+                console.log(newReview);
 
-                    $.ajax("/api/reviews", {
-                        type: "POST",
-                        data: newReview
-                    }).then(function () {
-                        console.log("created new Review");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    });
+                 var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+
+                    $("#modalContent").append(modalContainer);
+
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
+              /*  $.ajax("/api/reviews", {
+                    type: "POST",
+                    data: newReview
+                }).then(function () {
+                    console.log("created new Review");
+                    // Reload the page to get the updated list
+                    location.reload();
+                });*/
             });
 
         };
+
+        
     });
 </script>
