@@ -88,7 +88,8 @@ $(document).ready(function () {
 
           var modalImage = $("<img>");
           modalImage.attr("src", newReview.img);
-          modalImage.attr("class", "responsive-img");
+          modalImage.attr("class", "materialboxed");
+          modalImage.attr("style", "width:150px");
 
           var reviewTitle = $("<h4>");
           reviewTitle.text(newReview.headline);
@@ -163,7 +164,8 @@ $(document).ready(function () {
 
           var modalImage = $("<img>");
           modalImage.attr("src", newReview.img);
-          modalImage.attr("class", "responsive-img");
+          modalImage.attr("class", "materialboxed");
+          modalImage.attr("style", "width:150px");
 
           var reviewTitle = $("<h4>");
           reviewTitle.text(newReview.headline);
@@ -244,7 +246,8 @@ $(document).ready(function () {
 
         var modalImage = $("<img>");
         modalImage.attr("src", newReview.img);
-        modalImage.attr("class", "responsive-img");
+        modalImage.attr("class", "materialboxed");
+        modalImage.attr("style", "width:150px");
 
         var reviewTitle = $("<h4>");
         reviewTitle.text(newReview.headline);
