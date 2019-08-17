@@ -1,5 +1,15 @@
 {{> header}}
 
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h3>Review</h3>
+        <div id="modalContent"></div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Post</a>
+    </div>
+</div>
+
 <div class="row">
     <div class="input-field col s12">
         <select>
@@ -78,7 +88,7 @@
     </div>
 </div>
 
-<button class="btn waves-effect waves-light" type="submit" name="action" id="submit">
+<button class="btn waves-effect waves-light" type="submit" name="action" id="submit" href="#modal1">
     <i class="material-icons right">Submit</i>
 </button>
 
@@ -181,15 +191,8 @@
 
                     console.log(newReview);
 
-                    var modal = $("<div>");
-                    modal.attr("id", "modal1");
-                    modal.attr("class", "modal");
-
                     var modalContainer = $("<div>");
                     modalContainer.attr("class", "modal-content");
-
-                    var modalTitle = $("<h3>");
-                    modalTitle.text("Review");
 
                     var modalImage = $("<img>");
                     modalImage.attr("src", newReview.img);
@@ -200,25 +203,11 @@
                     var reviewBody = $("<p>");
                     reviewBody.text(newReview.review);
 
-                    var modalFooter = $("div");
-                    modalFooter.attr("class", "modal-footer");
-                    var modalAnchor = $("<a>");
-                    modalAnchor.attr("href", "'#!'");
-                    modalAnchor.attr("class", "modal-close waves-effect waves-green btn-flat");
-                    var modalAnchorLabel = $("<p>");
-                    modalAnchorLabel.text("Post");
-
-                    modalAnchor.append(modalAnchorLabel);
-                    modalFooter.append(modalAnchor);
-
-                    modalContainer.append(modalTitle);
                     modalContainer.append(modalImage);
                     modalContainer.append(reviewTitle);
                     modalContainer.append(reviewBody);
-                    modalContainer.append(modalFooter);
-                    modal.append(modalContainer);
 
-                    $("#modalDiv").prepend(modal);
+                    $("#modalContent").append(modalContainer);
 
                     $('.modal').modal();
                     $('.modal').modal('open');
@@ -268,14 +257,35 @@
                     }
                     console.log(newReview);
 
-                    $.ajax("/api/reviews", {
+                     var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+
+                    $("#modalContent").append(modalContainer);
+
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
+                  /*  $.ajax("/api/reviews", {
                         type: "POST",
                         data: newReview
                     }).then(function () {
                         console.log("created new Review");
                         // Reload the page to get the updated list
                         location.reload();
-                    });
+                    });*/
                 });
 
         };
@@ -314,16 +324,39 @@
                 }
                 console.log(newReview);
 
-                $.ajax("/api/reviews", {
+                 var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+
+                    $("#modalContent").append(modalContainer);
+
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
+              /*  $.ajax("/api/reviews", {
                     type: "POST",
                     data: newReview
                 }).then(function () {
                     console.log("created new Review");
                     // Reload the page to get the updated list
                     location.reload();
-                });
+                });*/
             });
 
         };
+
+        
     });
 </script>
