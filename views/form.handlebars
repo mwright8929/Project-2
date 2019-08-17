@@ -82,6 +82,8 @@
     <i class="material-icons right">Submit</i>
 </button>
 
+<div id="modal1" class="modal"></div>
+
 
 
 <script>
@@ -89,7 +91,9 @@
 
     $(document).ready(function () {
         $('select').formSelect();
+       // $('.modal').modal();
     });
+
 
     $(document).on("click", "#submit", function () {
         console.log("click");
@@ -174,16 +178,56 @@
                         img: image,
                         UserId: 1                 //$("#user").val().trim()
                     }
+
                     console.log(newReview);
 
-                    $.ajax("/api/reviews", {
-                        type: "POST",
-                        data: newReview
-                    }).then(function () {
-                        console.log("created new Review");
-                        // Reload the page to get the updated list
-                        location.reload();
+                    var modalContainer = $("<div>");
+                    modalContainer.attr("class", "modal-content");
+
+                    var modalTitle = $("<h3>");
+                    modalTitle.text("Review");
+
+                    var modalImage = $("<img>");
+                    modalImage.attr("src", newReview.img);
+
+                    var reviewTitle = $("<h4>");
+                    reviewTitle.text(newReview.headline);
+
+                    var reviewBody = $("<p>");
+                    reviewBody.text(newReview.review);
+
+                    var modalFooter = $("div");
+                    modalFooter.attr("class", "modal-footer");
+                    var modalAnchor = $("<a>");
+                    modalAnchor.attr("href", "'#!'");
+                    modalAnchor.attr("class", "modal-close waves-effect waves-green btn-flat");
+                    var modalAnchorLabel = $("<p>");
+                    modalAnchorLabel.text("Post");
+
+                    modalAnchor.append(modalAnchorLabel);
+                    modalFooter.append(modalAnchor);
+
+                    modalContainer.append(modalTitle);
+                    modalContainer.append(modalImage);
+                    modalContainer.append(reviewTitle);
+                    modalContainer.append(reviewBody);
+                    modalContainer.append(modalFooter);
+
+                    $("#modal1").prepend(modalContainer);
+
+                    $(document).ready(function () {
+                        $('.modal').modal();
                     });
+
+
+                    /*   $.ajax("/api/reviews", {
+                           type: "POST",
+                           data: newReview
+                       }).then(function () {
+                           console.log("created new Review");
+                           // Reload the page to get the updated list
+                           location.reload();
+                       }); */
                 });
         };
 
@@ -249,30 +293,30 @@
             }
 
             $.ajax(settings).done(function (response) {
-               // console.log(response);
+                // console.log(response);
 
                 var image = response.result.image;
                 console.log(image);
 
-                 var newReview = {
-                        category: $("select").val().trim(),
-                        productName: $("#title").val().trim(),
-                        score: $("[name = group1]:checked").attr("data-value"),
-                        headline: $("#headliner").val().trim(),
-                        review: $("#review").val().trim(),
-                        img: image,
-                        UserId: 1                 //$("#user").val().trim()
-                    }
-                    console.log(newReview);
+                var newReview = {
+                    category: $("select").val().trim(),
+                    productName: $("#title").val().trim(),
+                    score: $("[name = group1]:checked").attr("data-value"),
+                    headline: $("#headliner").val().trim(),
+                    review: $("#review").val().trim(),
+                    img: image,
+                    UserId: 1                 //$("#user").val().trim()
+                }
+                console.log(newReview);
 
-                    $.ajax("/api/reviews", {
-                        type: "POST",
-                        data: newReview
-                    }).then(function () {
-                        console.log("created new Review");
-                        // Reload the page to get the updated list
-                        location.reload();
-                    });
+                $.ajax("/api/reviews", {
+                    type: "POST",
+                    data: newReview
+                }).then(function () {
+                    console.log("created new Review");
+                    // Reload the page to get the updated list
+                    location.reload();
+                });
             });
 
         };
