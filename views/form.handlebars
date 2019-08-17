@@ -135,9 +135,9 @@
                 bookThis(title);
                 break;
 
-            //  case "game":
-            //      playThisGame(title);
-            //      break;
+            case "game":
+                playThisGame(title);
+                break;
 
 
             default:
@@ -231,6 +231,50 @@
 
         };
 
-    });
+        function playThisGame(title) {
+            console.log(title);
+            if (title == "") {
+                title = "pac-man"
+            }
 
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://chicken-coop.p.rapidapi.com/games/%7B" + title + "%7D?platform=pc",
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
+                    "x-rapidapi-key": "53396cf0c5msh92acae5f9a8f37ep11d66cjsn973d6e9f0ec7"
+                }
+            }
+
+            $.ajax(settings).done(function (response) {
+               // console.log(response);
+
+                var image = response.result.image;
+                console.log(image);
+
+                 var newReview = {
+                        category: $("select").val().trim(),
+                        productName: $("#title").val().trim(),
+                        score: $("[name = group1]:checked").attr("data-value"),
+                        headline: $("#headliner").val().trim(),
+                        review: $("#review").val().trim(),
+                        img: image,
+                        UserId: 1                 //$("#user").val().trim()
+                    }
+                    console.log(newReview);
+
+                    $.ajax("/api/reviews", {
+                        type: "POST",
+                        data: newReview
+                    }).then(function () {
+                        console.log("created new Review");
+                        // Reload the page to get the updated list
+                        location.reload();
+                    });
+            });
+
+        };
+    });
 </script>
