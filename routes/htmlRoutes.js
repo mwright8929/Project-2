@@ -24,8 +24,9 @@ module.exports = function(app) {
     res.render("books");
   });
 
-  app.get("/form", function(req, res) {
-    res.render("form");
+  app.get("/form", isLoggedIn, function(req, res) {
+    res.render("form", { user: req.user });
+    console.log(req.user); // this sends information from the user table to the page, capture the ID for the form?
   });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -38,6 +39,35 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
+
+  app.get("/signin", function(req, res) {
+    res.render("signin");
+  });
+
+  app.get("/logout", function(req, res) {
+    req.session.destroy(function(err) {
+      if (err) throw err;
+      res.redirect("/");
+    });
+  });
+
+  app.get("/dashboard", isLoggedIn, (req, res) => {
+    db.Reviews.findAll({
+      where: { UserId: req.user.id }
+    }).then(function(userdata) {
+      res.render("dashboard", { reviews: userdata, user: req.user });
+    });
+  });
+
+  function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect("/signin");
+  }
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

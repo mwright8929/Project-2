@@ -1,22 +1,29 @@
 var db = require("../models");
+var bCrypt = require("bcrypt-nodejs");
+var generateHash = function(password) {
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+};
+var fakepassword = generateHash("12345");
 
+var bob = fakepassword;
 var users = [
   {
     id: 1,
     name: "Leeroy Jenkins",
     username: "TheLeeroy",
-    password: "Guy"
+    password: bob
   },
   {
     id: 2,
     name: "Buddy Guy",
     username: "BG",
-    password: "12345"
+    password: bob
   }
 ];
 
 var reviews = [
   {
+    id: 1,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "movie",
@@ -27,6 +34,7 @@ var reviews = [
     UserId: 1
   },
   {
+    id: 2,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "game",
@@ -37,6 +45,7 @@ var reviews = [
     UserId: 1
   },
   {
+    id: 3,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "book",
@@ -47,6 +56,7 @@ var reviews = [
     UserId: 2
   },
   {
+    id: 4,
     headline: "It was okay",
     productName: "Bob's revenge",
     category: "game",
