@@ -82,7 +82,7 @@
     <i class="material-icons right">Submit</i>
 </button>
 
-<div id="modal1" class="modal"></div>
+<div id="modalDiv"></div>
 
 
 
@@ -91,7 +91,7 @@
 
     $(document).ready(function () {
         $('select').formSelect();
-       // $('.modal').modal();
+        // $('.modal').modal();
     });
 
 
@@ -181,6 +181,10 @@
 
                     console.log(newReview);
 
+                    var modal = $("<div>");
+                    modal.attr("id", "modal1");
+                    modal.attr("class", "modal");
+
                     var modalContainer = $("<div>");
                     modalContainer.attr("class", "modal-content");
 
@@ -212,12 +216,13 @@
                     modalContainer.append(reviewTitle);
                     modalContainer.append(reviewBody);
                     modalContainer.append(modalFooter);
+                    modal.append(modalContainer);
 
-                    $("#modal1").prepend(modalContainer);
+                    $("#modalDiv").prepend(modal);
 
-                    $(document).ready(function () {
-                        $('.modal').modal();
-                    });
+                    $('.modal').modal();
+                    $('.modal').modal('open');
+
 
 
                     /*   $.ajax("/api/reviews", {
