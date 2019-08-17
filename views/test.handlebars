@@ -1,0 +1,13 @@
+<label>Choose your category</label>
+<select class="browser-default">
+    <option value="" disabled selected>Choose your category</option>
+    <option value="book">Book</option>
+    <option value="game">Game</option>
+    <option value="movie">Movie</option>
+</select>
+
+<script>
+    $("body").on("click", "select", () => {
+        console.log($("select").val());
+    })
+</script>
