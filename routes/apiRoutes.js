@@ -16,8 +16,10 @@ module.exports = function(app) {
     });
   });
 
-  app.put("/api/reviews/:id", function(req, res) {
-    db.Reviews.update({ where: { id: req.params } }).then(function(dbReviews) {
+  app.put("/api/reviews", function(req, res) {
+    db.Reviews.update(req.body, { where: { id: req.body.id } }).then(function(
+      dbReviews
+    ) {
       res.json(dbReviews);
     });
   });
