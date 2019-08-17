@@ -1,162 +1,278 @@
-// Get references to page elements
-/*var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+/* eslint-disable prettier/prettier */
+$(document).ready(function () {
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
-
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
+  function getUserId() {
+  //  $.get( "/form",function(userId) {
+    //  var user = {user : req.user};
+      console.log();
+     // res.render(hbsObject);
+  //  });
   }
 
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);*/
-
-
-
-
-
-
-
-
-//get headers
-//get input from pulldown menu
-//get input from review buttons
-//get input from title , author and textarea.
-// on submit, submit data, retrieve json object.
-//post data
-//update (edit) data
-
-/*$(document).on("ready",function(){
-  get headers
- post
- $(document).on("submit","#submit",function(){
-  update
-  <delete>
-});
-});
-*/
-
-$(document).on("ready", function () {
   console.log("I'm ready!");
-  $('.ui.compact.menu')
-    .dropdown();
+  getUserId();
 
-    $('.ui.radio.checkbox')
-  .checkbox()
-;
+  $("select").formSelect();
 
-  $("#submit").on("submit", function (event) {
-    // Make sure to preventDefault on a submit event.
-    event.preventDefault();
-    console.log("hello");
 
-    var newReview = {
-      catagory: $(".ui.compact.menu").val().trim(),
-      title: $("#title").val().trim(),
-      rating: $("[name = fruit]:checked")
-        .val()
-        .replace("", " ")
-        .trim(),
-      review: $("#review").val().trim(),
-      author: $("#name").val().trim()
-    };
+  $(document).on("click", "#submit", function () {
+    console.log("click");
 
-    // Send the POST request.
-    $.ajax("/api/reviews", {
-      type: "POST",
-      data: newReview
-    }).then(function () {
-      console.log("created new Review");
-      // Reload the page to get the updated list
-      location.reload();
-    });
+    var title = $("#title")
+      .val()
+      .trim();
+    console.log("title= " + title);
+
+    var category = $("select").val();
+    console.log("category= " + category);
+
+    switch (category) {
+      case "movie":
+        movieThis(title);
+        break;
+
+      case "book":
+        bookThis(title);
+        break;
+
+      case "game":
+        playThisGame(title);
+        break;
+
+      default:
+        break;
+    }
+
+    function movieThis(title) {
+      console.log(title);
+      if (title == "") {
+        title = "Mr. Nobody";
+      }
+
+      var queryURL =
+        "http://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+
+      console.log(queryURL);
+
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        // After the data comes back from the API
+        .then(function (response) {
+          // Storing an array of results in the results variable
+          console.log(response);
+          var image = response.Poster;
+          console.log(image);
+
+          var newReview = {
+            category: $("select")
+              .val()
+              .trim(),
+            productName: $("#title")
+              .val()
+              .trim(),
+            score: $("[name = group1]:checked").attr("data-value"),
+            headline: $("#headliner")
+              .val()
+              .trim(),
+            review: $("#review")
+              .val()
+              .trim(),
+          };
+
+          console.log(newReview);
+
+          var modalContainer = $("<div>");
+          modalContainer.attr("class", "modal-content");
+
+          var modalImage = $("<img>");
+          modalImage.attr("src", newReview.img);
+          modalImage.attr("class", "responsive-img");
+
+          var reviewTitle = $("<h4>");
+          reviewTitle.text(newReview.headline);
+
+          var reviewBody = $("<p>");
+          reviewBody.text(newReview.review);
+
+          modalContainer.append(modalImage);
+          modalContainer.append(reviewTitle);
+          modalContainer.append(reviewBody);
+
+          $("#modalContent").append(modalContainer);
+
+          $(".modal").modal();
+          $(".modal").modal("open");
+
+          $.ajax("/api/reviews", {
+            type: "POST",
+            data: newReview
+          }).then(function () {
+            console.log("created new Review");
+            // Reload the page to get the updated list
+          });
+        });
+
+      $("#modalClose").on("click", function () {
+        location.reload();
+      });
+    }
+
+    function bookThis(title) {
+      console.log(title);
+      if (title == "") {
+        title = "Nan and her Red Hen";
+      }
+      var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + title;
+
+      console.log(queryURL);
+
+      $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        // After the data comes back from the API
+        .then(function (response) {
+          // Storing an array of results in the results variable
+          // console.log(response);
+          var image = response.items[0].volumeInfo.imageLinks.thumbnail;
+          console.log(image);
+
+          var newReview = {
+            category: $("select")
+              .val()
+              .trim(),
+            productName: $("#title")
+              .val()
+              .trim(),
+            score: $("[name = group1]:checked").attr("data-value"),
+            headline: $("#headliner")
+              .val()
+              .trim(),
+            review: $("#review")
+              .val()
+              .trim(),
+            img: image
+          };
+
+          console.log(newReview);
+
+          var modalContainer = $("<div>");
+          modalContainer.attr("class", "modal-content");
+
+          var modalImage = $("<img>");
+          modalImage.attr("src", newReview.img);
+          modalImage.attr("class", "responsive-img");
+
+          var reviewTitle = $("<h4>");
+          reviewTitle.text(newReview.headline);
+
+          var reviewBody = $("<p>");
+          reviewBody.text(newReview.review);
+
+          modalContainer.append(modalImage);
+          modalContainer.append(reviewTitle);
+          modalContainer.append(reviewBody);
+
+          $("#modalContent").append(modalContainer);
+
+          $(".modal").modal();
+          $(".modal").modal("open");
+
+          $.ajax("/api/reviews", {
+            type: "POST",
+            data: newReview
+          }).then(function () {
+            console.log("created new Review");
+            // Reload the page to get the updated list
+            //  location.reload();
+          });
+        });
+
+        $("#modalClose").on("click", function () {
+          location.reload();
+        });
+    }
+
+    function playThisGame(title) {
+      console.log(title);
+      if (title == "") {
+        title = "pac-man";
+      }
+
+      var settings = {
+        async: true,
+        crossDomain: true,
+        url: "https://chicken-coop.p.rapidapi.com/games/%7B" +
+          title +
+          "%7D?platform=pc",
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
+          "x-rapidapi-key": "53396cf0c5msh92acae5f9a8f37ep11d66cjsn973d6e9f0ec7"
+        }
+      };
+
+      $.ajax(settings).done(function (response) {
+        // console.log(response);
+
+        var image = response.result.image;
+        console.log(image);
+
+        var newReview = {
+          category: $("select")
+            .val()
+            .trim(),
+          productName: $("#title")
+            .val()
+            .trim(),
+          score: $("[name = group1]:checked").attr("data-value"),
+          headline: $("#headliner")
+            .val()
+            .trim(),
+          review: $("#review")
+            .val()
+            .trim(),
+          img: image
+        };
+
+        console.log(newReview);
+
+        var modalContainer = $("<div>");
+        modalContainer.attr("class", "modal-content");
+
+        var modalImage = $("<img>");
+        modalImage.attr("src", newReview.img);
+        modalImage.attr("class", "responsive-img");
+
+        var reviewTitle = $("<h4>");
+        reviewTitle.text(newReview.headline);
+
+        var reviewBody = $("<p>");
+        reviewBody.text(newReview.review);
+
+        modalContainer.append(modalImage);
+        modalContainer.append(reviewTitle);
+        modalContainer.append(reviewBody);
+
+        $("#modalContent").append(modalContainer);
+
+        $(".modal").modal();
+        $(".modal").modal("open");
+
+        $.ajax("/api/reviews", {
+          type: "POST",
+          data: newReview
+        }).then(function () {
+          console.log("created new Review");
+          // Reload the page to get the updated list
+          //  location.reload();
+        });
+      });
+      $("#modalClose").on("click", function () {
+        location.reload();
+      });
+    }
   });
-
 });
