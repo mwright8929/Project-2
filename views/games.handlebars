@@ -1,0 +1,13 @@
+<div class="container">
+    {{> header}}
+    <h2>Games</h2>
+    <div class="row">
+        {{#each data}}
+        {{> cards}}
+        {{/each}}
+    </div>
+
+    {{> cardmodal}}
+</div>
+
+<script src="/js/cardmodal.js"></script>
