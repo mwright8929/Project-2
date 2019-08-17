@@ -196,6 +196,7 @@
 
                     var modalImage = $("<img>");
                     modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
 
                     var reviewTitle = $("<h4>");
                     reviewTitle.text(newReview.headline);
@@ -253,7 +254,7 @@
                         headline: $("#headliner").val().trim(),
                         review: $("#review").val().trim(),
                         img: image,
-                        UserId: 1                 //$("#user").val().trim()
+                        UserId: 1                //$("#user").val().trim()
                     }
                     console.log(newReview);
 
@@ -262,6 +263,7 @@
 
                     var modalImage = $("<img>");
                     modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
 
                     var reviewTitle = $("<h4>");
                     reviewTitle.text(newReview.headline);
@@ -329,6 +331,7 @@
 
                     var modalImage = $("<img>");
                     modalImage.attr("src", newReview.img);
+                    modalImage.attr("class","responsive-img");
 
                     var reviewTitle = $("<h4>");
                     reviewTitle.text(newReview.headline);
