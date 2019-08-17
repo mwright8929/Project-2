@@ -3,20 +3,20 @@ $(document).ready(function() {
   $(document).on("click", ".card", function() {
     $("#modal-header").text(
       $(this)
-        .children(".content")
+        .children(".card-content")
         .children(".header")
         .text()
     );
     $("#title_author").text(
       $(this)
-        .children(".content")
+        .children(".card-content")
         .children(".meta")
         .text()
     );
     $("#modal-img").attr(
       "src",
       $(this)
-        .children(".image")
+        .children(".card-image")
         .children("img")
         .attr("src")
     );
@@ -29,7 +29,7 @@ $(document).ready(function() {
       "★".repeat(
         parseInt(
           $(this)
-            .children(".content")
+            .children(".card-content")
             .children(".description")
             .text()
         )
@@ -38,7 +38,7 @@ $(document).ready(function() {
           5 -
             parseInt(
               $(this)
-                .children(".content")
+                .children(".card-content")
                 .children(".description")
                 .text()
             )
