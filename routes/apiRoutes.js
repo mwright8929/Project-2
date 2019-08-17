@@ -17,7 +17,7 @@ module.exports = function(app) {
       score: req.body.score,
       headline: req.body.headline,
       review: req.body.review,
-      img: req.body.image,
+      img: req.body.img,
       UserId: req.user.id
     })
       .then(function(dbReviews) {

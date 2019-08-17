@@ -33,8 +33,8 @@ module.exports = function(sequelize, DataTypes) {
       validate: { min: 1, max: 5, isInt: true }
     },
     img: {
-      type: DataTypes.STRING,
-      validate: { is: /\.(gif|jpg|jpeg|tiff|png)$/ }
+      type: DataTypes.STRING
+      // validate: { is: /\.(gif|jpg|jpeg|tiff|png)$/ } removed due to API links not necessarily ending in image file names
     }
   });
 
