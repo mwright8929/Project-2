@@ -88,6 +88,7 @@
     $(document).ready(function () {
         $(".modal").modal();
 
+
         $(document).on("click", ".delo", function () {
             $.ajax("/api/reviews", {
                 type: "DELETE",

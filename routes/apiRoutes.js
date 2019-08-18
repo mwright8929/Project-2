@@ -11,6 +11,7 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/reviews", function(req, res) {
+    console.log(req.body);
     db.Reviews.create({
       category: req.body.category,
       productName: req.body.productName,
