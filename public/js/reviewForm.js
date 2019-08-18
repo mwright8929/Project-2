@@ -79,6 +79,7 @@ $(document).ready(function () {
             review: $("#review")
               .val()
               .trim(),
+            img: image
           };
 
           console.log(newReview);
@@ -112,12 +113,13 @@ $(document).ready(function () {
           }).then(function () {
             console.log("created new Review");
             // Reload the page to get the updated list
+            $("#modalClose").on("click", function () {
+              location.reload();
+            });
           });
         });
 
-      $("#modalClose").on("click", function () {
-        location.reload();
-      });
+      
     }
 
     function bookThis(title) {
@@ -188,13 +190,13 @@ $(document).ready(function () {
           }).then(function () {
             console.log("created new Review");
             // Reload the page to get the updated list
-            //  location.reload();
+            $("#modalClose").on("click", function () {
+              location.reload();
+            });
           });
         });
 
-        $("#modalClose").on("click", function () {
-          location.reload();
-        });
+       
     }
 
     function playThisGame(title) {
@@ -271,11 +273,12 @@ $(document).ready(function () {
           console.log("created new Review");
           // Reload the page to get the updated list
           //  location.reload();
+          $("#modalClose").on("click", function () {
+            location.reload();
+          });
         });
       });
-      $("#modalClose").on("click", function () {
-        location.reload();
-      });
+      
     }
   });
 });
