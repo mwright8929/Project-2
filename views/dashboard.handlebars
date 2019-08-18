@@ -46,9 +46,10 @@
     <div id="modal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4 id="modal-header" class="center-align">Edit Your Review</h4>
-            <label for="productName">Product Name:</label><input type="text" id="productName" />
-            <label for="headline">Headline:</label><input type="text" id="headline" />
-            <label for="img">Image URL:</label><input type="text" id="img" />
+            <label for="productName">Product Name:</label><input required type="text" id="productName"
+                class="validate" />
+            <label for="headline">Headline:</label><input required type="text" id="headline" class="validate" />
+            <label for="img">Image URL:</label><input required type="text" id="img" class="validate" />
             <p><label>Score:</label>
                 <label>
                     <input class="with-gap" name="group1" type="radio" data-value="1">
@@ -71,9 +72,10 @@
                     <span for="group1" data-value="5">5</span>
                 </label>
             </p>
-            <label for="review">Review:</label><textarea name="review" id="review"
-                class="materialize-textarea"></textarea>
-            <p hidden id="hiddenID"></p>
+            <label for="review">Review:</label><textarea required name="review" id="review"
+                class="materialize-textarea validate"></textarea>
+            <p id="hiddenID" hidden></p>
+            <p id="error" style="color: red; font-size:1.5rem; padding: 2rem" class="center-align"></p>
         </div>
         <div class="modal-footer">
             <a class="waves-effect waves-light btn putrequest">Submit Changes</a>
@@ -98,7 +100,6 @@
         })
 
         $(document).on("click", ".edit", function () {
-            console.log($(this).parent("td").siblings("td"[1]).text());
             $("#productName").val($(this).parent("td").siblings("td").eq(0).text());
             $("#headline").val($(this).parent("td").siblings("td").eq(2).text());
             $("#img").val($(this).parent("td").siblings("td").eq(6).text());
@@ -118,7 +119,10 @@
                     review: $("#review").val().trim(),
                     id: $("#hiddenID").text()
                 }
-            }).then((resp) => location.reload())
+            }).then((resp) => location.reload()).catch((err) => {
+                $("#error").text(err.responseText);
+                setTimeout(() => $("#error").text(''), 5000);
+            })
         })
     })
 
