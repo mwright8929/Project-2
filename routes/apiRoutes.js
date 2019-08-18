@@ -11,25 +11,34 @@ module.exports = function(app) {
 
   // Create a new example
   app.post("/api/reviews", function(req, res) {
+    console.log(req.body);
     db.Reviews.create({
       category: req.body.category,
       productName: req.body.productName,
       score: req.body.score,
       headline: req.body.headline,
       review: req.body.review,
-      img: req.body.image,
+      img: req.body.img,
       UserId: req.user.id
-    }).then(function(dbReviews) {
-      res.json(dbReviews);
-    });
+    })
+      .then(function(dbReviews) {
+        res.json(dbReviews);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
   });
 
   app.put("/api/reviews", function(req, res) {
-    db.Reviews.update(req.body, { where: { id: req.body.id } }).then(function(
-      dbReviews
-    ) {
-      res.json(dbReviews);
-    });
+    db.Reviews.update(req.body, { where: { id: req.body.id } })
+      .then(function(dbReviews) {
+        res.json(dbReviews);
+      })
+      .catch(function(err) {
+        res
+          .status(500)
+          .send("Failed to update your review. Check this form and try again.");
+      });
   });
 
   // Delete an example by id
