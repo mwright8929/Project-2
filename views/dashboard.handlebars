@@ -118,9 +118,8 @@
                     review: $("#review").val().trim(),
                     id: $("#hiddenID").text()
                 }
-            }).then((resp) => location.reload()).catch(err => {
+            }).then((resp) => location.reload()).catch((err) => {
                 $("#error").text(err.responseText);
-                console.log(err);
                 setTimeout(() => $("#error").text(''), 5000);
             })
         })
