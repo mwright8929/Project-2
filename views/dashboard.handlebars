@@ -74,6 +74,7 @@
             </p>
             <label for="review">Review:</label><textarea required name="review" id="review"
                 class="materialize-textarea validate"></textarea>
+            <p id="hiddenID" hidden></p>
             <p id="error"></p>
         </div>
         <div class="modal-footer">
@@ -98,7 +99,6 @@
         })
 
         $(document).on("click", ".edit", function () {
-            console.log($(this).parent("td").siblings("td"[1]).text());
             $("#productName").val($(this).parent("td").siblings("td").eq(0).text());
             $("#headline").val($(this).parent("td").siblings("td").eq(2).text());
             $("#img").val($(this).parent("td").siblings("td").eq(6).text());
@@ -108,22 +108,17 @@
         });
 
         $(document).on("click", ".putrequest", function () {
-            try {
-                $.ajax("/api/reviews", {
-                    type: "PUT",
-                    data: {
-                        productName: $("#productName").val().trim(),
-                        headline: $("#headline").val().trim(),
-                        img: $("#img").val().trim(),
-                        score: parseInt($("[name = group1]:checked").attr("data-value")),
-                        review: $("#review").val().trim(),
-                        id: $("#hiddenID").text()
-                    }
-                }).done((resp) => location.reload());
-            } catch {
-                $("#error").text("An error occurred. Check your form and try submitting it again.")
-            }
-
+            $.ajax("/api/reviews", {
+                type: "PUT",
+                data: {
+                    productName: $("#productName").val().trim(),
+                    headline: $("#headline").val().trim(),
+                    img: $("#img").val().trim(),
+                    score: parseInt($("[name = group1]:checked").attr("data-value")),
+                    review: $("#review").val().trim(),
+                    id: $("#hiddenID").text()
+                }
+            }).then((resp) => location.reload())
         })
     })
 
