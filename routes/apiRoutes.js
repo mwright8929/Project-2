@@ -24,7 +24,7 @@ module.exports = function(app) {
         res.json(dbReviews);
       })
       .catch(function(err) {
-        console.log(err);
+        res.status(500).send("Oops!" + err.errors.message);
       });
   });
 

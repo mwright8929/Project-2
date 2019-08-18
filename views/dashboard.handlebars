@@ -74,7 +74,7 @@
             </p>
             <label for="review">Review:</label><textarea required name="review" id="review"
                 class="materialize-textarea validate"></textarea>
-            <p hidden id="hiddenID"></p>
+            <p id="error"></p>
         </div>
         <div class="modal-footer">
             <a class="waves-effect waves-light btn putrequest">Submit Changes</a>
@@ -108,17 +108,22 @@
         });
 
         $(document).on("click", ".putrequest", function () {
-            $.ajax("/api/reviews", {
-                type: "PUT",
-                data: {
-                    productName: $("#productName").val().trim(),
-                    headline: $("#headline").val().trim(),
-                    img: $("#img").val().trim(),
-                    score: parseInt($("[name = group1]:checked").attr("data-value")),
-                    review: $("#review").val().trim(),
-                    id: $("#hiddenID").text()
-                }
-            }).then((resp) => location.reload())
+            try {
+                $.ajax("/api/reviews", {
+                    type: "PUT",
+                    data: {
+                        productName: $("#productName").val().trim(),
+                        headline: $("#headline").val().trim(),
+                        img: $("#img").val().trim(),
+                        score: parseInt($("[name = group1]:checked").attr("data-value")),
+                        review: $("#review").val().trim(),
+                        id: $("#hiddenID").text()
+                    }
+                }).done((resp) => location.reload());
+            } catch {
+                $("#error").text("An error occurred. Check your form and try submitting it again.")
+            }
+
         })
     })
 
