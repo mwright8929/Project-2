@@ -1,16 +1,16 @@
-<div class="col s4 m4 l4">
-    <div class="card modal-trigger" href="#modal">
-        <div class="card-image">
-            <img src={{img}} alt="poster or cover">
-        </div>
-        <div class="card-content">
-            <div class="header">{{headline}}</div>
-            <div class="meta">Review of {{productName}} by {{User.name}}</div>
-            <div class="description">{{score}}</div>
-            <div class="extra-content">
-                <span class="right-floated">Created on {{createdAt}}</span>
-            </div>
-        </div>
-        <p hidden>{{review}}</p>
+<div class="card modal-trigger small" href="#modal">
+    {{!-- <div class="card small"> --}}
+    <div class="card-image">
+        <img src={{img}} alt="poster or cover">
     </div>
+    <div class="card-content">
+        <div class="header">{{headline}}</div>
+        <div class="meta">Review of {{productName}} by {{User.name}}</div>
+        <div class="description">{{score}}</div>
+        <div class="extra-content">
+            <span class="right-floated">Created on {{createdAt}}</span>
+        </div>
+    </div>
+    <p hidden>{{review}}</p>
+    {{!-- </div> --}}
 </div>
