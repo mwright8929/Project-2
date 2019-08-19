@@ -1,7 +1,8 @@
 <div class="container">
     {{> header}}
-    <h2>Movies</h2>
-    <div class="row">
+    {{> searchbar}}
+    <h2 category="movie" class="cat">Movies</h2>
+    <div class="row resulto">
         {{#each data}}
         {{> cards}}
         {{/each}}

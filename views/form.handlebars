@@ -10,9 +10,16 @@
     </div>
 </div>
 
+
+<div class="progress" id="duringAjax">
+      <div class="indeterminate"></div>
+  </div>
+
+
+
 <div class="row">
     <div class="input-field col s12">
-        <select>
+        <select id="category">
             <option value="" disable selected>Categories</option>
             <option value="movie">Movies</option>
             <option value="book">Books</option>
@@ -29,12 +36,20 @@
                 <input placeholder="Title" id="title" type="text" class="validate">
                 <label for="title">Title of Work to be Reviewed</label>
             </div>
-        <!--    <div class="input-field col s6">
-                <input id="user" type="text" class="validate">
-                <label for="user">Your Name</label> -->
+            <div class="input-field col s6" id="gamePlats">
+                <select id="platforms">
+                    <option value="" disable selected>Platforms</option>
+                    <option value="pc">PC</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="xbox">Xbox</option>
+                    <option value="nintendo">Nintendo</option>
+                    <option value="playstation">Playstation</option>
+                </select>
+                <label>Platforms</label>
             </div>
         </div>
-    </form>
+</div>
+</form>
 </div>
 
 <div class="row">
@@ -92,9 +107,9 @@
     <i class="material-icons right">Submit</i>
 </button>
 
-<div id="modalDiv"></div>
-
+<div class="progress" id="duringAjax">
+      <div class="indeterminate"></div>
+  </div>
 
 
 <script src="/js/reviewForm.js"></script>
-   

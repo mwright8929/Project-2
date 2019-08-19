@@ -1,0 +1,46 @@
+<nav>
+    <div class="nav-wrapper">
+        <input id="search" placeholder="Search" />
+        <a class="btn clearo" style="position: relative; bottom: 95%; left: 92%; visibility: hidden">Clear</a>
+    </div>
+</nav>
+
+<script>
+    $("#search").on("change", function () {
+        console.log($("#search").val());
+        console.log($(".cat").attr("category"));
+        $.ajax({
+            url: `/search/${$('.cat').attr('category')}/${$('#search').val()}`,
+            type: 'GET'
+        }).done((resp) => {
+            console.log(resp);
+            if (resp.length == 0) {
+                $(".resulto").html("<h1>No results found</h1>");
+            }
+            else {
+                $(".resulto").empty();
+                for (var i = 0; i < resp.length; i++) {
+                    var card = $(`<div class="card modal-trigger small" href="#modal">`)
+                    var image = $(`<div class="card-image"><img src="${resp[i].img}" alt="poster or cover"></div>`);
+                    var content = $(`<div class="card-content"><div class="header">${resp[i].headline}</div><div class="meta">Review of ${resp[i].productName} by ${resp[i].User.name}</div><div class="description">${resp[i].score}</div><div class="extra-content"><span class="right-floated">Created on ${resp[i].createdAt}</span></div></div>`);
+                    var hidden = $(`<p hidden>${resp[i].review}</p>`);
+
+                    card.append(image);
+                    card.append(content);
+                    card.append(hidden);
+
+                    $(".resulto").append(card);
+
+                }
+            }
+
+        })
+        $(".clearo").css("visibility", "visible");
+    })
+
+    $(document).on("click", ".clearo", function () {
+        // $("#search").val('');
+        // $(".clearo").css("visibility", "hidden");
+        location.reload();
+    })
+</script>
