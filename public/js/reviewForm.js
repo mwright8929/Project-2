@@ -29,6 +29,10 @@ $(document).ready(function () {
     var category = $("#category").val();
     console.log("category= " + category);
 
+    $("#submit").prop("disabled", true);
+    console.log("handicapable");
+
+
     switch (category) {
       case "movie":
         movieThis(title);
@@ -68,6 +72,7 @@ $(document).ready(function () {
           var image = response.Poster;
           console.log(image);
 
+
           var newReview = {
             category: $("#category")
               .val()
@@ -107,7 +112,9 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
@@ -145,6 +152,7 @@ $(document).ready(function () {
           var image = response.items[0].volumeInfo.imageLinks.thumbnail;
           console.log(image);
 
+
           var newReview = {
             category: $("#category")
               .val()
@@ -184,7 +192,9 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
@@ -268,7 +278,9 @@ $(document).ready(function () {
 
         $("#modalContent").append(modalContainer);
 
-        $(".modal").modal();
+        $(".modal").modal({
+          dismissable: false
+        });
         $(".modal").modal("open");
 
         $.ajax("/api/reviews", {
