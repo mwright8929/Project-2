@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
 $(document).ready(function () {
 
+  $(".indeterminate").hide();
+
+
 
   function showPlats() {
     if ($("#category").val() === "game") {
@@ -12,7 +15,7 @@ $(document).ready(function () {
 
   showPlats();
 
-  $("#category").on("change",function(){
+  $("#category").on("change", function () {
     showPlats();
   });
 
@@ -32,27 +35,28 @@ $(document).ready(function () {
     $("#submit").prop("disabled", true);
     console.log("handicapable");
 
+    $(".indeterminate").show();
 
     switch (category) {
-      case "movie":
-        movieThis(title);
-        break;
+    case "movie":
+      movieThis(title);
+      break;
 
-      case "book":
-        bookThis(title);
-        break;
+    case "book":
+      bookThis(title);
+      break;
 
-      case "game":
-        playThisGame(title);
-        break;
+    case "game":
+      playThisGame(title);
+      break;
 
-      default:
-        break;
+    default:
+      break;
     }
 
     function movieThis(title) {
       console.log(title);
-      if (title == "") {
+      if (title === "") {
         title = "Mr. Nobody";
       }
 
@@ -62,9 +66,9 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
+        url: queryURL,
+        method: "GET"
+      })
         // After the data comes back from the API
         .then(function (response) {
           // Storing an array of results in the results variable
@@ -134,7 +138,7 @@ $(document).ready(function () {
 
     function bookThis(title) {
       console.log(title);
-      if (title == "") {
+      if (title ==="") {
         title = "Nan and her Red Hen";
       }
       var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + title;
@@ -142,9 +146,9 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
+        url: queryURL,
+        method: "GET"
+      })
         // After the data comes back from the API
         .then(function (response) {
           // Storing an array of results in the results variable
@@ -214,7 +218,7 @@ $(document).ready(function () {
 
     function playThisGame(title) {
       console.log(title);
-      if (title == "") {
+      if (title === "") {
         title = "pac-man";
       }
       console.log($("#platforms").val());
