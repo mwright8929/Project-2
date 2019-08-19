@@ -2,11 +2,11 @@
 $(document).ready(function () {
 
   function getUserId() {
-  //  $.get( "/form",function(userId) {
+    //  $.get( "/form",function(userId) {
     //  var user = {user : req.user};
-      console.log();
-     // res.render(hbsObject);
-  //  });
+    console.log();
+    // res.render(hbsObject);
+    //  });
   }
 
   console.log("I'm ready!");
@@ -25,6 +25,10 @@ $(document).ready(function () {
 
     var category = $("select").val();
     console.log("category= " + category);
+
+    $("#submit").prop("disabled", true);
+    console.log("handicapable");
+
 
     switch (category) {
       case "movie":
@@ -65,6 +69,7 @@ $(document).ready(function () {
           var image = response.Poster;
           console.log(image);
 
+
           var newReview = {
             category: $("select")
               .val()
@@ -104,7 +109,9 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
@@ -119,7 +126,7 @@ $(document).ready(function () {
           });
         });
 
-      
+
     }
 
     function bookThis(title) {
@@ -142,6 +149,7 @@ $(document).ready(function () {
           var image = response.items[0].volumeInfo.imageLinks.thumbnail;
           console.log(image);
 
+
           var newReview = {
             category: $("select")
               .val()
@@ -181,7 +189,9 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
@@ -196,7 +206,7 @@ $(document).ready(function () {
           });
         });
 
-       
+
     }
 
     function playThisGame(title) {
@@ -219,7 +229,7 @@ $(document).ready(function () {
       };
 
       $.ajax(settings).done(function (response) {
-        // console.log(response);
+         console.log(response);
 
         var image = response.result.image;
         console.log(image);
@@ -263,7 +273,9 @@ $(document).ready(function () {
 
         $("#modalContent").append(modalContainer);
 
-        $(".modal").modal();
+        $(".modal").modal({
+          dismissable: false
+        });
         $(".modal").modal("open");
 
         $.ajax("/api/reviews", {
@@ -278,7 +290,7 @@ $(document).ready(function () {
           });
         });
       });
-      
+
     }
   });
 });
