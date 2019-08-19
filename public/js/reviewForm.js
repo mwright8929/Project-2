@@ -2,15 +2,19 @@
 $(document).ready(function () {
 
 
-  $("#gamePlats").hide();
-  
-  function getPlats(){
-    $("#category").change("game",function(){
+  function showPlats() {
+    if ($("#category").val() === "game") {
       $("#gamePlats").show();
-    });
+    } else {
+      $("#gamePlats").hide();
+    }
   }
 
-  getPlats();
+  showPlats();
+
+  $("#category").on("change",function(){
+    showPlats();
+  });
 
   console.log("I'm ready!");
 
