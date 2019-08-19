@@ -1,29 +1,32 @@
 /* eslint-disable prettier/prettier */
 $(document).ready(function () {
 
-  function getUserId() {
-    //  $.get( "/form",function(userId) {
-    //  var user = {user : req.user};
-    console.log();
-    // res.render(hbsObject);
-    //  });
+
+  function showPlats() {
+    if ($("#category").val() === "game") {
+      $("#gamePlats").show();
+    } else {
+      $("#gamePlats").hide();
+    }
   }
 
+  showPlats();
+
+  $("#category").on("change",function(){
+    showPlats();
+  });
+
   console.log("I'm ready!");
-  getUserId();
 
   $("select").formSelect();
 
 
+
   $(document).on("click", "#submit", function () {
     console.log("click");
-
-    var title = $("#title")
-      .val()
-      .trim();
     console.log("title= " + title);
 
-    var category = $("select").val();
+    var category = $("#category").val();
     console.log("category= " + category);
 
     $("#submit").prop("disabled", true);
@@ -71,7 +74,7 @@ $(document).ready(function () {
 
 
           var newReview = {
-            category: $("select")
+            category: $("#category")
               .val()
               .trim(),
             productName: $("#title")
@@ -151,7 +154,7 @@ $(document).ready(function () {
 
 
           var newReview = {
-            category: $("select")
+            category: $("#category")
               .val()
               .trim(),
             productName: $("#title")
@@ -214,13 +217,15 @@ $(document).ready(function () {
       if (title == "") {
         title = "pac-man";
       }
+      console.log($("#platforms").val());
+      var platform = $("#platforms").val().trim();
 
       var settings = {
         async: true,
         crossDomain: true,
         url: "https://chicken-coop.p.rapidapi.com/games/%7B" +
           title +
-          "%7D?platform=pc",
+          "%7D?platform=" + platform,
         method: "GET",
         headers: {
           "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
@@ -229,13 +234,13 @@ $(document).ready(function () {
       };
 
       $.ajax(settings).done(function (response) {
-         console.log(response);
+        console.log(response);
 
         var image = response.result.image;
         console.log(image);
 
         var newReview = {
-          category: $("select")
+          category: $("#category")
             .val()
             .trim(),
           productName: $("#title")
