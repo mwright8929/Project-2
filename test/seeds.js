@@ -23,7 +23,6 @@ var users = [
 
 var reviews = [
   {
-    id: 1,
     headline: "The Best Movie Ever!",
     productName: "The Matrix",
     category: "movie",
@@ -34,7 +33,6 @@ var reviews = [
     UserId: 1
   },
   {
-    id: 2,
     headline: "Surprisingly Deep",
     productName: "Mario Tennis Aces",
     category: "game",
@@ -45,7 +43,6 @@ var reviews = [
     UserId: 1
   },
   {
-    id: 2,
     headline: "Legendary",
     productName: "Catch-22",
     category: "book",
@@ -56,7 +53,6 @@ var reviews = [
     UserId: 2
   },
   {
-    id: 2,
     headline: "It was mediocre",
     productName: "Pokken Tournament",
     category: "game",
