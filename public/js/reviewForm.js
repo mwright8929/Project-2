@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 $(document).ready(function () {
+  console.log("ready");
 
-  $(".indeterminate").hide();
+  $("#duringAjax").hide();
 
-
+  $("#gamePlats").hide();
 
   function showPlats() {
     if ($("#category").val() === "game") {
@@ -23,7 +24,7 @@ $(document).ready(function () {
 
   $("select").formSelect();
 
-  $(document).on("click", "#submit", function() {
+  $(document).on("click", "#submit", function () {
     console.log("click");
     var title = $("#title").val();
     console.log("title= " + title);
@@ -34,23 +35,23 @@ $(document).ready(function () {
     $("#submit").prop("disabled", true);
     console.log("handicapable");
 
-    $(".indeterminate").show();
+    $("#duringAjax").show();
 
     switch (category) {
-    case "movie":
-      movieThis(title);
-      break;
+      case "movie":
+        movieThis(title);
+        break;
 
-    case "book":
-      bookThis(title);
-      break;
+      case "book":
+        bookThis(title);
+        break;
 
-    case "game":
-      playThisGame(title);
-      break;
+      case "game":
+        playThisGame(title);
+        break;
 
-    default:
-      break;
+      default:
+        break;
     }
 
     function movieThis(title) {
@@ -65,11 +66,11 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
+          url: queryURL,
+          method: "GET"
+        })
         // After the data comes back from the API
-        .then(function(response) {
+        .then(function (response) {
           // Storing an array of results in the results variable
           console.log(response);
           var image = response.Poster;
@@ -122,10 +123,10 @@ $(document).ready(function () {
           $.ajax("/api/reviews", {
             type: "POST",
             data: newReview
-          }).then(function() {
+          }).then(function () {
             console.log("created new Review");
             // Reload the page to get the updated list
-            $("#modalClose").on("click", function() {
+            $("#modalClose").on("click", function () {
               location.reload();
             });
           });
@@ -134,7 +135,7 @@ $(document).ready(function () {
 
     function bookThis(title) {
       console.log(title);
-      if (title ==="") {
+      if (title === "") {
         title = "Nan and her Red Hen";
       }
       var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + title;
@@ -142,11 +143,11 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
+          url: queryURL,
+          method: "GET"
+        })
         // After the data comes back from the API
-        .then(function(response) {
+        .then(function (response) {
           // Storing an array of results in the results variable
           // console.log(response);
           var image = response.items[0].volumeInfo.imageLinks.thumbnail;
@@ -199,10 +200,10 @@ $(document).ready(function () {
           $.ajax("/api/reviews", {
             type: "POST",
             data: newReview
-          }).then(function() {
+          }).then(function () {
             console.log("created new Review");
             // Reload the page to get the updated list
-            $("#modalClose").on("click", function() {
+            $("#modalClose").on("click", function () {
               location.reload();
             });
           });
@@ -222,8 +223,7 @@ $(document).ready(function () {
       var settings = {
         async: true,
         crossDomain: true,
-        url:
-          "https://chicken-coop.p.rapidapi.com/games/" +
+        url: "https://chicken-coop.p.rapidapi.com/games/" +
           title +
           "?platform=" +
           platform,
@@ -234,7 +234,7 @@ $(document).ready(function () {
         }
       };
 
-      $.ajax(settings).done(function(response) {
+      $.ajax(settings).done(function (response) {
         console.log(response);
 
         var image = response.result.image;
@@ -287,11 +287,11 @@ $(document).ready(function () {
         $.ajax("/api/reviews", {
           type: "POST",
           data: newReview
-        }).then(function() {
+        }).then(function () {
           console.log("created new Review");
           // Reload the page to get the updated list
           //  location.reload();
-          $("#modalClose").on("click", function() {
+          $("#modalClose").on("click", function () {
             location.reload();
           });
         });
