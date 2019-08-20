@@ -24,6 +24,7 @@ $(document).ready(function () {
 
   $(document).on("click", "#submit", function () {
     console.log("click");
+    var title = $("#title").val().trim();
     console.log("title= " + title);
 
     var category = $("#category").val();
