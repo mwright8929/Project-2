@@ -20,11 +20,7 @@ $(document).ready(function() {
 
   $(document).on("click", "#submit", function() {
     console.log("click");
-<<<<<<< HEAD
-    var title = $("#title").val().trim();
-=======
     var title = $("#title").val();
->>>>>>> 0213877a57ed196ac117d1b43fd7df16d32cd1cb
     console.log("title= " + title);
 
     var category = $("#category").val();
@@ -34,20 +30,20 @@ $(document).ready(function() {
     console.log("handicapable");
 
     switch (category) {
-      case "movie":
-        movieThis(title);
-        break;
+    case "movie":
+      movieThis(title);
+      break;
 
-      case "book":
-        bookThis(title);
-        break;
+    case "book":
+      bookThis(title);
+      break;
 
-      case "game":
-        playThisGame(title);
-        break;
+    case "game":
+      playThisGame(title);
+      break;
 
-      default:
-        break;
+    default:
+      break;
     }
 
     function movieThis(title) {
