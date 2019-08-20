@@ -23,7 +23,7 @@
                     var divo = $(`<div class="col s4 m4 l4 cardz">`)
                     var card = $(`<div class="card modal-trigger" href="#modal">`)
                     var image = $(`<div class="center-align" style="max-height: 200px; overflow: hidden"><img src="${resp[i].img}" alt="poster or cover"></div>`);
-                    var content = $(`<div class="card-content"><div class="header">${resp[i].headline}</div><div class="meta">Review of ${resp[i].productName} by ${resp[i].User.name}</div><div class="description">${resp[i].score}</div><div class="extra-content"><span class="right-floated">Created on ${resp[i].createdAt}</span></div><p hidden>${resp[i].review}</p></div>`);
+                    var content = $(`<div class="card-content"><div class="header center-align" style="font-size: 1.5rem">${resp[i].headline}</div><div class="meta center-align">Review of ${resp[i].productName} by ${resp[i].User.name}</div><div class="description center-align">${resp[i].score} stars</div><div class="extra-content center-align"><span style="font-size: 0.8rem">Created on ${resp[i].createdAt}</span></div><p hidden>${resp[i].review}</p></div>`);
 
                     card.append(image);
                     card.append(content);
