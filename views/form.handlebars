@@ -1,106 +1,120 @@
 {{> header}}
 
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h3>Review</h3>
-        <div id="modalContent"></div>
-    </div>
-    <div class="modal-footer">
-        <a href="/dashboard" class="modal-close waves-effect waves-green btn-flat" id="modalClose">Post</a>
-    </div>
-</div>
 
-<div class="row">
-    <div class="input-field col s12">
-        <select id="category">
-            <option value="" disable selected>Categories</option>
-            <option value="movie">Movies</option>
-            <option value="book">Books</option>
-            <option value="game">Games</option>
-        </select>
-        <label>Pick a Catagory</label>
-    </div>
-</div>
+<div class="formContainer">
 
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s6">
-                <input placeholder="Title" id="title" type="text" class="validate">
-                <label for="title">Title of Work to be Reviewed</label>
-            </div>
-            <div class="input-field col s6" id="gamePlats">
-                <select id="platforms">
-                    <option value="" disable selected>Platforms</option>
-                    <option value="pc">PC</option>
-                    <option value="mobile">Mobile</option>
-                    <option value="xbox">Xbox</option>
-                    <option value="switch">Nintendo Switch</option>
-                    <option value="playstation-4">Playstation</option>
-                </select>
-                <label>Platforms</label>
-            </div>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h3>Review</h3>
+            <div id="modalContent"></div>
         </div>
-</div>
-</form>
-</div>
-
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="headliner" type="text" class="validate">
-                <label for="headliner">Please Make a Title for Your Review</label>
-            </div>
+        <div class="modal-footer">
+            <a href="/dashboard" class="modal-close waves-effect waves-green btn-flat" id="modalClose">Post</a>
         </div>
+    </div>
+
+    <div class="row formBox">
+        <div class="input-field col s12">
+            <select id="category">
+                <option value="disable selected">Categories</option>
+                <option value="movie">Movies</option>
+                <option value="book">Books</option>
+                <option value="game">Games</option>
+            </select>
+            <label>Pick a Catagory</label>
+        </div>
+    </div>
+
+
+    <div class="row formBox">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Title" id="title" type="text" class="validate">
+                    <label for="title">Title of Work to be Reviewed</label>
+                </div>
+                <div class="input-field col s6" id="gamePlats">
+                    <select id="platforms">
+                        <option value="" disable selected>Platforms</option>
+                        <option value="pc">PC</option>
+                        <option value="mobile">Mobile</option>
+                        <option value="xbox">Xbox</option>
+                        <option value="switch">Nintendo Switch</option>
+                        <option value="playstation-4">Playstation</option>
+                    </select>
+                    <label>Platforms</label>
+                </div>
+            </div>
+    </div>
     </form>
-</div>
 
-<div class="row">
-    <form class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <textarea id="review" class="materialize-textarea"></textarea>
-                <label for="review">Review</label>
+
+
+    <div class="row formBox">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="headliner" type="text" class="validate">
+                    <label for="headliner">Please Make a Title for Your Review</label>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
-
-<div class="row">
-    <div class="col s12">
-        <form action='#'>
-            <p>
-                <label>
-                    <input class="with-gap" name="group1" type="radio" data-value="1">
-                    <span for="group1" data-value="1">Worst</span>
-                </label>
-                <label>
-                    <input class="with-gap" name="group1" type="radio" data-value="2">
-                    <span for="group1" data-value="2">2</span>
-                </label>
-                <label>
-                    <input class="with-gap" name="group1" type="radio" data-value="3">
-                    <span for="group1" data-value="3">Ok</span>
-                </label>
-                <label>
-                    <input class="with-gap" name="group1" type="radio" data-value="4">
-                    <span for="group1" data-value="4">4</span>
-                </label>
-                <label>
-                    <input class="with-gap" name="group1" type="radio" data-value="5">
-                    <span for="group1" data-value="5">Best</span>
-                </label>
-            </p>
         </form>
     </div>
+
+    <div class="row formBox">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="review" class="materialize-textarea"></textarea>
+                    <label for="review">Review</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row formBox">
+        <div class="col s12">
+            <form action='#'>
+                <p>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" data-value="1">
+                        <span for="group1" data-value="1">Worst</span>
+                    </label>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" data-value="2">
+                        <span for="group1" data-value="2">2</span>
+                    </label>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" data-value="3">
+                        <span for="group1" data-value="3">Ok</span>
+                    </label>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" data-value="4">
+                        <span for="group1" data-value="4">4</span>
+                    </label>
+                    <label>
+                        <input class="with-gap" name="group1" type="radio" data-value="5">
+                        <span for="group1" data-value="5">Best</span>
+                    </label>
+                </p>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col s12 navSec">
+        <button class="formButton" type="submit" name="action" id="submit" href="#modal1">
+            {{!-- <i class="material-icons right">Submit</i> --}}Submit
+        </button>
+    </div>
+
 </div>
 
-<button class="btn waves-effect waves-light" type="submit" name="action" id="submit" href="#modal1">
-    <i class="material-icons right">Submit</i>
-</button>
 
 <div id="modalDiv"></div>
+
 
 
 

@@ -1,8 +1,9 @@
-<div class="container">
-    {{> header}}
+{{> header}}
     {{> searchbar}}
-    <h2 category="game" class="cat">Games</h2>
+<div class="container">
+    <h2 class="cTitle cat" category="game">Games</h2>
     <div class="row resulto">
+
         {{#each data}}
         {{> cards}}
         {{/each}}
