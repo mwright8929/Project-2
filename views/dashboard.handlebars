@@ -1,15 +1,10 @@
 {{> header}}
 
-<div class="container">
-    <div class="row">
-        <h3 class="col s12 center-align">WELCOME BACK {{user.name}}?</h3>
-    </div>
-    <div class="row">
-        <a href="/form" class="waves-effect waves-light btn col s12">Add a Review</a>
-    </div>
-    <div class="row">
-        <a href="/logout" class="waves-effect waves-light btn col s12" style="background:darkred">Logout</a>
-    </div>
+<div class="row">
+    <h3 class="col s12 cTitle">WELCOME BACK {{user.name}}</h3>
+</div>
+
+<div class="container dashBox">
 
     {{!-- populate a table with options to edit and delete reviews --}}
     <table class="highlight z-depth-2">
@@ -32,10 +27,10 @@
                 <td>{{headline}}</td>
                 <td>{{review}}</td>
                 <td>{{score}}</td>
-                <td><a href="#modal" class="waves-effect waves-light btn edit modal-trigger" style="background:green"
+                <td><a href="#modal" class="waves-effect waves-light btn edit modal-trigger" style="background:none"
                         value={{id}}>Edit</a>
                 </td>
-                <td><a class="waves-effect waves-light btn delo" style="background:darkred" value={{id}}>Delete</a>
+                <td><a class="waves-effect waves-light btn delo" style="background:none" value={{id}}>Delete</a>
                 </td>
                 <td hidden>{{img}}</td>
             </tr>
@@ -45,10 +40,12 @@
     <div id="modal" class="modal modal-fixed-footer">
         <div class="modal-content">
             <h4 id="modal-header" class="center-align">Edit Your Review</h4>
-            <label for="productName">Product Name:</label><input required type="text" id="productName"
-                class="validate" />
-            <label for="headline">Headline:</label><input required type="text" id="headline" class="validate" />
-            <label for="img">Image URL:</label><input required type="text" id="img" class="validate" />
+            <label for="productName">Product Name:</label><input required type="text" id="productName" class="validate"
+                style="color: black" />
+            <label for="headline">Headline:</label><input required type="text" id="headline" class="validate"
+                style="color: black" />
+            <label for="img">Image URL:</label><input required type="text" id="img" class="validate"
+                style="color: black" />
             <p><label>Score:</label>
                 <label>
                     <input class="with-gap" name="group1" type="radio" data-value="1">
@@ -72,7 +69,7 @@
                 </label>
             </p>
             <label for="review">Review:</label><textarea required name="review" id="review"
-                class="materialize-textarea validate"></textarea>
+                class="materialize-textarea validate" style="color: black"></textarea>
             <p id="hiddenID" hidden></p>
             <p id="error" style="color: red; font-size:1.5rem; padding: 2rem" class="center-align"></p>
         </div>
@@ -81,6 +78,15 @@
             <a href="#!" class="modal-close waves-effect waves-light btn" style="background:maroon">Cancel</a>
         </div>
     </div>
+</div>
+<div class="row">
+
+    <div class="col s12 navSec">
+        <a href="/logout">
+            <button>LOG OUT</button>
+        </a>
+    </div>
+
 </div>
 
 <script>
