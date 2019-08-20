@@ -13,7 +13,7 @@ module.exports = function(app) {
       where: { category: "game" }
     }).then(data => {
       res.render("games", { data: data });
-      console.log(data);
+      //console.log(data);
     });
   });
 
@@ -23,7 +23,7 @@ module.exports = function(app) {
       where: { category: "movie" }
     }).then(data => {
       res.render("movies", { data: data });
-      console.log(data);
+      //console.log(data);
     });
   });
 
@@ -33,13 +33,13 @@ module.exports = function(app) {
       where: { category: "book" }
     }).then(data => {
       res.render("books", { data: data });
-      console.log(data);
+      //console.log(data);
     });
   });
 
   app.get("/form", isLoggedIn, function(req, res) {
     res.render("form", { user: req.user });
-    console.log(req.user); // this sends information from the user table to the page, capture the ID for the form?
+    //console.log(req.user); // this sends information from the user table to the page, capture the ID for the form?
   });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -73,7 +73,7 @@ module.exports = function(app) {
       }
     }).then(data => {
       res.json(data);
-      console.log(data);
+      //console.log(data);
     });
   });
 
