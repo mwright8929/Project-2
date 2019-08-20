@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  $("title").text(`${$(".cat").text()}`);
   $(".modal").modal();
   $(document).on("click", ".card", function() {
     $("#modal-header").text(
@@ -16,12 +17,13 @@ $(document).ready(function() {
     $("#modal-img").attr(
       "src",
       $(this)
-        .children(".card-image")
+        .children(".center-align")
         .children("img")
         .attr("src")
     );
     $("#review").text(
       $(this)
+        .children(".card-content")
         .children("p")
         .text()
     );
