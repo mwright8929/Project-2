@@ -6,6 +6,7 @@
 body {
   background-image: url(../images/retro_sun.jpg);
   background-size: 100%;
+  font-family: "Righteous", cursive;
 }
 
 .navSec {
@@ -34,9 +35,85 @@ body {
 .iconContainer {
   margin-top: 5%;
   border: 10px solid white;
-  border-radius: 20px;
+  border-radius: 100px;
+  width: 70%;
 }
 
 .carousel svg {
   color: white;
+}
+
+.pac {
+  color: white;
+  text-align: center;
+  font-size: 2em;
+}
+
+.formContainer {
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 30%;
+  position: relative;
+  left: 35%;
+  margin-top: 3%;
+  margin-bottom: 2%;
+  background: rgba(36, 5, 24, 0.6);
+  padding: 2%;
+  color: white;
+}
+
+.formBox {
+  /* border: 5px solid white; */
+  /* border-radius: 10px; */
+}
+
+.formButton {
+  background: none;
+  color: white;
+  border: 3px solid white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-family: "Righteous", cursive;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.headNavBut {
+  /* border: 1px solid white; */
+  margin-top: 6%;
+}
+
+.headLogo {
+  /* border: 1px solid white; */
+  margin-top: 2%;
+}
+
+.headLogo2 {
+  height: 150px;
+  position: relative;
+  right: 100%;
+}
+
+.sInContainer {
+  border: 2px solid white;
+  border-radius: 20px;
+  width: 30%;
+  position: relative;
+  left: 35%;
+  margin-top: 10%;
+  margin-bottom: 2%;
+  background: rgba(36, 5, 24, 0.6);
+  padding: 2%;
+}
+
+.cardz {
+  border: 2px solid white;
+  border-radius: 20px;
+  background: rgba(36, 5, 24, 0.6);
+  padding: 2%;
+}
+
+.cTitle {
+  color: white;
+  text-align: center;
 }
