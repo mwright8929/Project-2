@@ -1,30 +1,33 @@
 /* eslint-disable prettier/prettier */
-$(document).ready(function () {
-
-  function getUserId() {
-  //  $.get( "/form",function(userId) {
-    //  var user = {user : req.user};
-      console.log();
-     // res.render(hbsObject);
-  //  });
+$(document).ready(function() {
+  function showPlats() {
+    if ($("#category").val() === "game") {
+      $("#gamePlats").show();
+    } else {
+      $("#gamePlats").hide();
+    }
   }
 
+  showPlats();
+
+  $("#category").on("change", function() {
+    showPlats();
+  });
+
   console.log("I'm ready!");
-  getUserId();
 
   $("select").formSelect();
 
-
-  $(document).on("click", "#submit", function () {
+  $(document).on("click", "#submit", function() {
     console.log("click");
-
-    var title = $("#title")
-      .val()
-      .trim();
+    var title = $("#title").val();
     console.log("title= " + title);
 
-    var category = $("select").val();
+    var category = $("#category").val();
     console.log("category= " + category);
+
+    $("#submit").prop("disabled", true);
+    console.log("handicapable");
 
     switch (category) {
       case "movie":
@@ -55,18 +58,18 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
+        url: queryURL,
+        method: "GET"
+      })
         // After the data comes back from the API
-        .then(function (response) {
+        .then(function(response) {
           // Storing an array of results in the results variable
           console.log(response);
           var image = response.Poster;
           console.log(image);
 
           var newReview = {
-            category: $("select")
+            category: $("#category")
               .val()
               .trim(),
             productName: $("#title")
@@ -104,22 +107,22 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
             type: "POST",
             data: newReview
-          }).then(function () {
+          }).then(function() {
             console.log("created new Review");
             // Reload the page to get the updated list
-            $("#modalClose").on("click", function () {
+            $("#modalClose").on("click", function() {
               location.reload();
             });
           });
         });
-
-      
     }
 
     function bookThis(title) {
@@ -132,18 +135,18 @@ $(document).ready(function () {
       console.log(queryURL);
 
       $.ajax({
-          url: queryURL,
-          method: "GET"
-        })
+        url: queryURL,
+        method: "GET"
+      })
         // After the data comes back from the API
-        .then(function (response) {
+        .then(function(response) {
           // Storing an array of results in the results variable
           // console.log(response);
           var image = response.items[0].volumeInfo.imageLinks.thumbnail;
           console.log(image);
 
           var newReview = {
-            category: $("select")
+            category: $("#category")
               .val()
               .trim(),
             productName: $("#title")
@@ -181,22 +184,22 @@ $(document).ready(function () {
 
           $("#modalContent").append(modalContainer);
 
-          $(".modal").modal();
+          $(".modal").modal({
+            dismissable: false
+          });
           $(".modal").modal("open");
 
           $.ajax("/api/reviews", {
             type: "POST",
             data: newReview
-          }).then(function () {
+          }).then(function() {
             console.log("created new Review");
             // Reload the page to get the updated list
-            $("#modalClose").on("click", function () {
+            $("#modalClose").on("click", function() {
               location.reload();
             });
           });
         });
-
-       
     }
 
     function playThisGame(title) {
@@ -204,13 +207,19 @@ $(document).ready(function () {
       if (title == "") {
         title = "pac-man";
       }
+      console.log($("#platforms").val());
+      var platform = $("#platforms")
+        .val()
+        .trim();
 
       var settings = {
         async: true,
         crossDomain: true,
-        url: "https://chicken-coop.p.rapidapi.com/games/%7B" +
+        url:
+          "https://chicken-coop.p.rapidapi.com/games/" +
           title +
-          "%7D?platform=pc",
+          "?platform=" +
+          platform,
         method: "GET",
         headers: {
           "x-rapidapi-host": "chicken-coop.p.rapidapi.com",
@@ -218,14 +227,14 @@ $(document).ready(function () {
         }
       };
 
-      $.ajax(settings).done(function (response) {
-        // console.log(response);
+      $.ajax(settings).done(function(response) {
+        console.log(response);
 
         var image = response.result.image;
         console.log(image);
 
         var newReview = {
-          category: $("select")
+          category: $("#category")
             .val()
             .trim(),
           productName: $("#title")
@@ -263,22 +272,23 @@ $(document).ready(function () {
 
         $("#modalContent").append(modalContainer);
 
-        $(".modal").modal();
+        $(".modal").modal({
+          dismissable: false
+        });
         $(".modal").modal("open");
 
         $.ajax("/api/reviews", {
           type: "POST",
           data: newReview
-        }).then(function () {
+        }).then(function() {
           console.log("created new Review");
           // Reload the page to get the updated list
           //  location.reload();
-          $("#modalClose").on("click", function () {
+          $("#modalClose").on("click", function() {
             location.reload();
           });
         });
       });
-      
     }
   });
 });

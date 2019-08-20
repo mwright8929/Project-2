@@ -1,4 +1,5 @@
 var db = require("../models");
+const Op = db.Sequelize.Op;
 
 module.exports = function(app) {
   // Load index page
@@ -57,6 +58,23 @@ module.exports = function(app) {
 
   app.get("/signin", function(req, res) {
     res.render("signin");
+  });
+
+  app.get("/search/:cat/:query", function(req, res) {
+    db.Reviews.findAll({
+      include: [db.Users],
+      where: {
+        category: req.params.cat,
+        [Op.or]: {
+          headline: { [Op.like]: `%${req.params.query}%` },
+          productName: { [Op.like]: `%${req.params.query}%` },
+          review: { [Op.like]: `%${req.params.query}%` }
+        }
+      }
+    }).then(data => {
+      res.json(data);
+      console.log(data);
+    });
   });
 
   app.get("/logout", function(req, res) {

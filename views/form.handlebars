@@ -15,7 +15,7 @@
 
     <div class="row formBox">
         <div class="input-field col s12">
-            <select>
+            <select id="category">
                 <option value="disable selected">Categories</option>
                 <option value="movie">Movies</option>
                 <option value="book">Books</option>
@@ -25,19 +25,29 @@
         </div>
     </div>
 
-    <div class="row formBox">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s6">
-                    <input placeholder="Title" id="title" type="text" class="validate">
-                    <label for="title">Title of Work to be Reviewed</label>
-                </div>
-                <!--    <div class="input-field col s6">
-                <input id="user" type="text" class="validate">
-                <label for="user">Your Name</label> -->
+
+<div class="row formBox">
+    <form class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input placeholder="Title" id="title" type="text" class="validate">
+                <label for="title">Title of Work to be Reviewed</label>
             </div>
-        </form>
-    </div>
+            <div class="input-field col s6" id="gamePlats">
+                <select id="platforms">
+                    <option value="" disable selected>Platforms</option>
+                    <option value="pc">PC</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="xbox">Xbox</option>
+                    <option value="switch">Nintendo Switch</option>
+                    <option value="playstation-4">Playstation</option>
+                </select>
+                <label>Platforms</label>
+            </div>
+        </div>
+</div>
+</form>
+</div>
 
 
     <div class="row formBox">
