@@ -20,16 +20,16 @@
             else {
                 $(".resulto").empty();
                 for (var i = 0; i < resp.length; i++) {
-                    var card = $(`<div class="card modal-trigger small" href="#modal">`)
-                    var image = $(`<div class="card-image"><img src="${resp[i].img}" alt="poster or cover"></div>`);
-                    var content = $(`<div class="card-content"><div class="header">${resp[i].headline}</div><div class="meta">Review of ${resp[i].productName} by ${resp[i].User.name}</div><div class="description">${resp[i].score}</div><div class="extra-content"><span class="right-floated">Created on ${resp[i].createdAt}</span></div></div>`);
-                    var hidden = $(`<p hidden>${resp[i].review}</p>`);
+                    var divo = $(`<div class="col s4 m4 l4 cardz">`)
+                    var card = $(`<div class="card modal-trigger" href="#modal">`)
+                    var image = $(`<div class="center-align" style="max-height: 200px; overflow: hidden"><img src="${resp[i].img}" alt="poster or cover"></div>`);
+                    var content = $(`<div class="card-content"><div class="header">${resp[i].headline}</div><div class="meta">Review of ${resp[i].productName} by ${resp[i].User.name}</div><div class="description">${resp[i].score}</div><div class="extra-content"><span class="right-floated">Created on ${resp[i].createdAt}</span></div><p hidden>${resp[i].review}</p></div>`);
 
                     card.append(image);
                     card.append(content);
-                    card.append(hidden);
+                    divo.append(card);
 
-                    $(".resulto").append(card);
+                    $(".resulto").append(divo);
 
                 }
             }
